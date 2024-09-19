@@ -16,13 +16,12 @@ Since this is the first week, this section is empty.
 
 ## Learnings:
 - Researched several weather APIs to find the best match for functionality and cost.
-- Recognized the importance of scalability early, especially with the possibility of handling a 50% user increase in the first year.
 
 ## Next Week’s Goals:
-- Begin integration of the Weather API and test basic data retrieval (Responsible: [Team Member Name]).
-- Start working on UI/UX designs for the main weather display screen (Responsible: [Team Member Name]).
-- Implement a prototype of the weather guessing game (Responsible: [Team Member Name]).
-- Define a plan for non-functional requirements, including scalability and security (Responsible: [Team Member Name]).
+- Begin integration of the Weather API and test basic data retrieval.
+- Start working on UI/UX designs for the main weather display screen.
+- Implement a prototype of the weather guessing game.
+- Define a plan for non-functional requirements, including security.
 
 ---
 
@@ -33,11 +32,14 @@ Since this is the first week, this section is empty.
 
 ### Progress and Issues:
 - Set up the GitHub repository.
-- Started researching weather APIs and their documentation.
-- Encountered some difficulty with API documentation; need more research time.
+- Started researching weather APIs.
+- Reasearched what tech stack to use.
+- Need more time to research weather APIs to use.
+- Need to learn how to use new technologies and have them work together.
 
 ### Next Week’s Goals:
-- Begin integrating the API with the app and ensure that it retrieves the correct data.
+- Begin planning the look of the app.
+- Begin testing the API to see that it retrieves the correct data.
 - Test basic functionality with a dummy weather display.
 - Help other team members with API-related challenges.
 
@@ -66,3 +68,8 @@ Since this is the first week, this section is empty.
 ### Progress and Issues:
 - Started researching weather APIs and their documentation.
 - Encountered some difficulty with API documentation; need more research time.
+
+### Next Week’s Goals:
+- Continue researching the weather APIs and focus on understanding their integration with the app.
+- Collaborate with teammates on API integration, helping to ensure that weather data is retrieved correctly.
+- Assist teammates in prototyping the weather guessing game, specifically by working on the logic for generating random weather predictions.
