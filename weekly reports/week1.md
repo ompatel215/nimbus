@@ -33,7 +33,7 @@ Since this is the first week, this section is empty.
 ### Progress and Issues:
 - Set up the GitHub repository.
 - Started researching weather APIs.
-- Reasearched what tech stack to use.
+- Researched what tech stack to use.
 - Need more time to research weather APIs to use.
 - Need to learn how to use new technologies and have them work together.
 
@@ -72,4 +72,4 @@ Since this is the first week, this section is empty.
 ### Next Week’s Goals:
 - Continue researching the weather APIs and focus on understanding their integration with the app.
 - Collaborate with teammates on API integration, helping to ensure that weather data is retrieved correctly.
-- Assist teammates in prototyping the weather guessing game by working on the logic for generating random weather predictions.
+- Assist teammates in prototyping the weather guessing game by working on the logic for weather prediction framework.
