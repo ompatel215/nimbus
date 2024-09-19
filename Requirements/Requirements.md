@@ -1,20 +1,26 @@
-# 1. Team Info & Policies (10%)
-**Om Patel**  
+## 1. Team Info & Policies (10%)
+### Team Members
+- **Om Patel:** 
+- **Victor Liu:**
+- **Tommy Lu:**
 
-Git Repo: [https://github.com/ompatel215/nimbus](https://github.com/ompatel215/nimbus)
+### Project Artifacts
+- **GitHub Repository:** https://github.com/ompatel215/nimbus
+- **Project Documentation:** [Markdown Documentation](#git@github.com:ompatel215/nimbus.git)
+- **NOAA API Documentation:** [NOAA API](https://www.ncdc.noaa.gov/cdo-web/webservices/v2)
 
 ---
 
 # 2. Product Description (20%)
 ### Major Features:
-- Current Location Weather
-- 5-day Forecast
-- Icons for Weather Conditions
-- Weather Guessing Game
+- Allow user to enter current location to get weather
+- Allow user to guess the temperature of selected location
+- Tracks how many correct predictions users submitted for select location
+- Compare user predictions with real-time temperatures from NOAA API 
 
 ### Stretch Goals:
 - Weather-Based Suggestions
-- Severe Weather Alerts
+- Leaderboard for correct guesses
 
 ---
 
