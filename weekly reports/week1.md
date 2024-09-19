@@ -7,8 +7,8 @@ Since this is the first week, this section is empty.
 
 ### Completed:
 - Established the GitHub repository for version control.
-- Outlined the core features: current location weather, 5-day forecast, weather condition icons, and the weather guessing game.
-- Defined stretch goals, including weather-based suggestions and severe weather alerts.
+- Outlined the core features: allow the user to enter the current location to get weather, allow the user to guess the temperature of the selected location, track how many correct predictions users submitted for select locations, and compare user predictions with real-time temperatures from NOAA API
+- Defined stretch goals, including weather-based suggestions, severe weather alerts, and a leaderboard for successful guesses.
 
 ### Issues:
 - Some team members need more time to become familiar with integrating the Weather API.
@@ -72,4 +72,4 @@ Since this is the first week, this section is empty.
 ### Next Week’s Goals:
 - Continue researching the weather APIs and focus on understanding their integration with the app.
 - Collaborate with teammates on API integration, helping to ensure that weather data is retrieved correctly.
-- Assist teammates in prototyping the weather guessing game, specifically by working on the logic for generating random weather predictions.
+- Assist teammates in prototyping the weather guessing game by working on the logic for generating random weather predictions.
