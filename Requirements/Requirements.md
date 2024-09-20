@@ -1,8 +1,8 @@
 ## 1. Team Info & Policies (10%)
 ### Team Members
-- **Om Patel:** 
-- **Victor Liu:**
-- **Tommy Lu:**
+- **Om Patel:** Development Team: Backend
+- **Victor Liu:** Product Owner
+- **Tommy Lu:** Scrum Master
 
 ### Project Artifacts
 - **GitHub Repository:** https://github.com/ompatel215/nimbus
