@@ -78,3 +78,20 @@
 
 ### Security and Privacy
 - The system must comply with relevant data protection laws such as GDPR or CCPA, ensuring that all user data is encrypted both in transit and at rest. Access to sensitive information should be restricted to authorized personnel only, with multi-factor authentication enforced for administrative accounts.
+
+## 5. External Requirements (10%)
+
+
+## 6. Team Process Description (20%)
+
+Describe your semester-long development process.
+
+- The technologies we will be using include Node.js, React Native, Firebase, and OpenWeatherMap API for weather data.
+
+- **Om Patel:** Development Team: Frontend
+- **Victor Liu:** Product Owner: Backend
+- **Tommy Lu:** Scrum Master: Database
+  
+- Provide a schedule for each member (or sub-group) with at least four concrete milestones and deadlines for the semester.
+- Specify and explain at least three major risks that could prevent you from completing your project.
+- Describe at what point in your process external feedback (i.e., feedback from outside your project group, including the project manager) will be most useful and how you will get that feedback.
