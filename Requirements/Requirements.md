@@ -1,7 +1,7 @@
 # 1. Team Info & Policies (10%)
 ### Team Members
-- **Om Patel:** Development Team: Frontend
-- **Victor Liu:** Product Owner: Backend
+- **Om Patel:** Product Owner: Frontend
+- **Victor Liu:** Development Team: Backend
 - **Tommy Lu:** Scrum Master: Database
 
 ### Project Artifacts
