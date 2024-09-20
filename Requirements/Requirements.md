@@ -79,10 +79,10 @@
 ### Security and Privacy
 - The system must comply with relevant data protection laws such as GDPR or CCPA, ensuring that all user data is encrypted both in transit and at rest. Access to sensitive information should be restricted to authorized personnel only, with multi-factor authentication enforced for administrative accounts.
 
-## 5. External Requirements (10%)
+### 5. External Requirements (10%)
 
 
-## 6. Team Process Description (20%)
+### 6. Team Process Description (20%)
 
 Describe your semester-long development process.
 
