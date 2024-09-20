@@ -86,7 +86,7 @@
 
 Describe your semester-long development process.
 
-- The technologies we will be using include Node.js, React Native, Firebase, and NOAA API for weather data.
+- The technologies we will be using include Node.js, React Native, MongoDB, and NOAA API for weather data.
 
 - **Om Patel:** Product Owner: Frontend
 - **Victor Liu:** Development Team: Backend
