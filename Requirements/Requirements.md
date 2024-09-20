@@ -57,10 +57,10 @@
 6) **Extensions/Variations:** User filters streak history by date or location.
 7) **Exceptions:** No data available for streak history.
 
-### Use Case 3: 
-1) **Actors:**
-2) **Trigger:**
-3) **Preconditions:**
+### Use Case 3: Weather-based suggestion
+1) **Actors:** User
+2) **Trigger:** User makes guess of temperature for location
+3) **Preconditions:** 
 4) **Postconditions (Success Scenario):** 
 5) **Postconditions (Success Scenario):**
 6) **Extensions/Variations:**
