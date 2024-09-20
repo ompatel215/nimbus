@@ -60,11 +60,21 @@
 ### Use Case 3: Weather-based suggestion
 1) **Actors:** User
 2) **Trigger:** User makes guess of temperature for location
-3) **Preconditions:** 
-4) **Postconditions (Success Scenario):** 
+3) **Preconditions:**
+- The user has access to the app
+- The NOAA API is working and the system can retrieve weather data.
+4) **Postconditions (Success Scenario):**
+- The system provides a suggestion to the user based on the actual weather of the location
 5) **Postconditions (Success Scenario):**
-6) **Extensions/Variations:**
-7) **Exceptions:**
+- User inputs location and temperature guess.
+- System calls the NOAA API to fetch current weather data.
+- System analyzes the weather conditions (e.g., temperature, humidity).
+- System provides a relevant suggestion based on the current weather
+6) **Extensions/Variations:**  
+- User selects additional types of weather-based suggestions 
+- System provides personalized suggestions based on user preferences
+- Failure to retrieve weather data from the NOAA API.  
+- No suggestion is available for the given weather conditions.
 
 ---
 
@@ -91,7 +101,13 @@ Describe your semester-long development process.
 - **Om Patel:** Product Owner: Frontend
 - **Victor Liu:** Development Team: Backend
 - **Tommy Lu:** Scrum Master: Database
-  
-- Provide a schedule for each member (or sub-group) with at least four concrete milestones and deadlines for the semester.
-- Specify and explain at least three major risks that could prevent you from completing your project.
-- Describe at what point in your process external feedback (i.e., feedback from outside your project group, including the project manager) will be most useful and how you will get that feedback.
+
+### Milestones
+1. Begin frontend development and integrate NOAA API. Establish MongoDB database and set up initial API endpoints.
+2. Complete the user interface for guessing temperature. Work on database to store user data and streak history.
+3. Testing and bug fixes to improve user experience
+4. Finalize the app and implement any stretch goals such as leaderboards and/or weather-based suggestions
+### Risks
+- Risks that we may encounter include, API unavailability and/or Team Availabilty. Team Availability can be easily mitigated by communication through discord and working through github.
+### Feedback
+- Once the core features have been implemented and tested, external feedback would be the most useful. We can gather this feedback from other classmates interacting with our app.
