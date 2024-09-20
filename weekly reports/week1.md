@@ -59,7 +59,7 @@ Since this is the first week, this section is empty.
 - Start prototyping the user interaction for the weather guessing game.
 - Test basic functionality with a dummy weather display.
 - Help other team members with API-related challenges.
-
+ 
 ---
 
 ## Victor Liu
