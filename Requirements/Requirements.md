@@ -91,10 +91,26 @@
 
 # 5. External Requirements (10%)
 
+### API Services
+
+- **NOAA API:** Essential for retrieving real-time weather data. [NOAA API](https://www.ncdc.noaa.gov/cdo-web/webservices/v2)
+
+### Backend Infrastructure
+
+- **Node.js:** Runtime environment for the backend server.
+- **MongoDB:** Database service for storing user data, predictions, and streak history.
+
+### Frontend Framework
+
+- **React Native:** For cross-platform mobile app development.
 
 # 6. Team Process Description (20%)
 
-Describe your semester-long development process.
+### Schedule:
+1. **Milestone 1 (Week 3):** Basic app structure with NOAA API integration.
+2. **Milestone 2 (Week 6):** Functional temperature guessing and comparison feature.
+3. **Milestone 3 (Week 9):** Streak tracking and display dashboard.
+4. **Milestone 4 (Week 12):** Final testing, documentation, and deployment.
 
 - The technologies we will be using include Node.js, React Native, MongoDB, and NOAA API for weather data.
 
