@@ -35,14 +35,24 @@
 
 ## Tommy Lu
 **Last Week’s Goals:** 
-
 ### Progress and Issues:
 - Worked on wireframes for the user interface.
 - Exploring how the guessing game can be incorporated smoothly into the app design.
 - Started researching weather APIs and their documentation.
 - Encountered some difficulty with API documentation; need more research time.
 ### Next Week’s Goals:
-
+- Finalize UI design for the core weather features.
+- Start prototyping the user interaction for the weather guessing game.
+- Test basic functionality with a dummy weather display.
+- Help other team members with API-related challenges.
+### Progress and Issues:
+- Worked on wireframes for the user interface.
+- Exploring how the guessing game can be incorporated smoothly into the app design.
+- Started researching weather APIs and their documentation.
+### Next Week’s Goals:
+- Finalize UI design for the core weather features.
+- Start prototyping the user interaction for the weather guessing game.
+- Help other team members with API-related challenges.
 ---
 
 ## Victor Liu
