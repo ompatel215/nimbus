@@ -65,5 +65,3 @@
 ### Next Week’s Goals:
 
 =======
-
->>>>>>> 1e56221a532920ed5fdda1d93d8e1bcfe4fb0676
