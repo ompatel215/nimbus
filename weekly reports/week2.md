@@ -37,7 +37,10 @@
 **Last Week’s Goals:** 
 
 ### Progress and Issues:
-
+- Worked on wireframes for the user interface.
+- Exploring how the guessing game can be incorporated smoothly into the app design.
+- Started researching weather APIs and their documentation.
+- Encountered some difficulty with API documentation; need more research time.
 ### Next Week’s Goals:
 
 ---
