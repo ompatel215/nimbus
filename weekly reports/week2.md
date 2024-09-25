@@ -24,12 +24,14 @@
 - Test basic functionality with a dummy weather display.
 - Help other team members with API-related challenges.
 ### Progress and Issues:
-- Downloaded necessary files to run react native locally
-- Organized the frontend in the repository
-- Worked on the homescreen to test functionality
-- Added NOAA api
-- Facing multiple errors when trying to display app on android/ios
+- Downloaded necessary files to run react native locally.
+- Organized the frontend in the repository.
+- Worked on the homescreen to test functionality.
+- Added NOAA api.
+- Facing multiple errors when trying to display app on android/ios.
 ### Next Week’s Goals:
+- Fixing errors when running code.
+-  
 
 ---
 
