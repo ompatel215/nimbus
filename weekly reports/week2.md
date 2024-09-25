@@ -31,7 +31,7 @@
 - Facing multiple errors when trying to display app on android/ios.
 ### Next Week’s Goals:
 - Fixing errors when running code.
--  
+- Have app display on ios/android device.
 
 ---
 
