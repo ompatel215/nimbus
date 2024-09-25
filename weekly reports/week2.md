@@ -57,7 +57,9 @@
 
 ## Victor Liu
 **Last Week’s Goals:**
-
+- Continue researching the weather APIs and focus on understanding their integration with the app.
+- Collaborate with teammates on API integration, helping to ensure that weather data is retrieved correctly.
+- Assist teammates in prototyping the weather guessing game by working on the logic for weather prediction framework.
 ### Progress and Issues:
 
 ### Next Week’s Goals:
