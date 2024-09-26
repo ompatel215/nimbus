@@ -57,10 +57,6 @@
 - Worked on wireframes for the user interface.
 - Exploring how the guessing game can be incorporated smoothly into the app design.
 - Started researching weather APIs and their documentation.
-### Next Week’s Goals:
-- Finalize UI design for the core weather features.
-- Start prototyping the user interaction for the weather guessing game.
-- Help other team members with API-related challenges.
 ---
 
 ## Victor Liu
