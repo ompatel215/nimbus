@@ -13,6 +13,12 @@
 - Encountered errors displaying the app on Android/iOS.
 - Investigated smooth integration of a guessing game feature.
 ## Next Week’s Goals:
+- Resolve errors encountered when running the app on Android/iOS devices to ensure a smooth deployment.
+- Finalize the UI design for core weather features and integrate the designs into the app.
+- Continue developing the prototype for the weather guessing game, focusing on user interaction and functionality.
+- Collaborate on integrating the NOAA API effectively, ensuring accurate data retrieval and display.
+- Discuss and establish a strategy for storing API data, potentially using MongoDB for user predictions and streak tracking.
+- Ensure all team members assist each other with challenges related to API integration and app functionality.
 
 ---
 
@@ -25,14 +31,14 @@
 - Test basic functionality with a dummy weather display.
 - Help other team members with API-related challenges.
 ### Progress and Issues:
-- Downloaded necessary files to run react native locally.
+- Downloaded necessary files to run react-native locally.
 - Organized the frontend in the repository.
 - Worked on the homescreen to test functionality.
 - Added NOAA api.
-- Facing multiple errors when trying to display app on android/ios.
+- Facing multiple errors when displaying the app on Android/IOS.
 ### Next Week’s Goals:
 - Fixing errors when running code.
-- Have app display on ios/android device.
+- Have the app display on an iOS/Android device.
 
 ---
 
@@ -59,11 +65,21 @@
 
 ## Victor Liu
 **Last Week’s Goals:**
-- Continue researching the weather APIs and focus on understanding their integration with the app.
-- Collaborate with teammates on API integration, helping to ensure that weather data is retrieved correctly.
-- Assist teammates in prototyping the weather guessing game by working on the logic for weather prediction framework.
+- Research weather APIs and understand how to integrate them with the app.
+- Collaborate on API integration and ensure data retrieval is accurate.
+- Assist in developing the logic for the weather guessing game framework.
+
 ### Progress and Issues:
+- Integrated the NOAA API to fetch live weather data.
+- Currently experimenting with the API to understand its structure and the data it returns.
+- Since the location needs to be in longitude and latitude, might also use a geolocation api for location services.
+- Still figuring out how to effectively store the retrieved data from the API for user predictions and streak tracking.
+
 
 ### Next Week’s Goals:
+- Continue experimenting with the NOAA API to clarify data usage.
+- Develop a strategy for storing API data, potentially using MongoDB.
+- Collaborate with teammates to discuss the best methods for integrating the API data into the app.
+- Begin working on the logic for the weather guessing game framework once the data storage strategy is established.
 
 =======
