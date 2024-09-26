@@ -1,16 +1,17 @@
 # Team Report
 
 ## Last Week’s Goals:
+- Begin integration of the Weather API and test basic data retrieval.
+- Start working on UI/UX designs for the main weather display screen.
+- Implement a prototype of the weather guessing game.
+- Define a plan for non-functional requirements, including security.
 
 ## Progress and Issues:
-
-### Completed:
-
-
-### Issues:
-
-## Learnings:
-
+- Set up React Native environment and organized frontend files.
+- Researched weather APIs.
+- Developed wireframes for the user interface.
+- Encountered errors displaying the app on Android/iOS.
+- Investigated smooth integration of a guessing game feature.
 ## Next Week’s Goals:
 
 ---
@@ -37,7 +38,6 @@
 
 ## Tommy Lu
 **Last Week’s Goals:** 
-### Progress and Issues:
 - Worked on wireframes for the user interface.
 - Exploring how the guessing game can be incorporated smoothly into the app design.
 - Started researching weather APIs and their documentation.
