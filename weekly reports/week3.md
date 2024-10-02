@@ -1,6 +1,7 @@
 # Team Report
 
 ## Last Week’s Goals:
+
 - Resolve errors encountered when running the app on Android/iOS devices to ensure a smooth deployment.
 - Finalize the UI design for core weather features and integrate the designs into the app.
 - Continue developing the prototype for the weather guessing game, focusing on user interaction and functionality.
