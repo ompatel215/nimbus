@@ -11,7 +11,20 @@
 
 ## Progress and Issues:
 
+- Continued work on resolving UI display issues for iOS and Android devices.
+- Made progress on finalizing UI designs for core weather features.
+- Explored options for data storage, including MongoDB for user predictions and streak tracking.
+- Ongoing challenges with displaying the application UI on iOS devices.
+- Android simulation still requires further development and troubleshooting.
+
 ## Next Week’s Goals:
+
+- Prioritize resolving UI display issues for both iOS and Android platforms.
+- Complete the integration of finalized UI designs into the app.
+- Continue refining the NOAA API integration, focusing on data accuracy and efficient retrieval.
+- Implement a prototype of the data storage solution for user predictions and streak tracking.
+- Develop a working prototype of the weather guessing game feature.
+- Conduct thorough testing of the app's functionality across different devices and simulators.
 
 ---
 
