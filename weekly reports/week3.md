@@ -19,11 +19,17 @@
 
 ## Om Patel
 **Last Week’s Goals:**
+- Fixing errors when running code.
+- Have the app display on an iOS/Android device.
 
 ### Progress and Issues:
+- Installed and setup android studio to simulate app on android device.
+- Created an api key from OpenCage in order to convert coordinates to locations and vice versa.
+- Still working on getting app to display, need more time to setup android folder.
 
 ### Next Week’s Goals:
-
+- Continue working on getting app to display on android.
+- Test features once app is able to be displayed
 ---
 
 ## Tommy Lu
