@@ -52,6 +52,7 @@
 
 ### Progress and Issues:
 
+---
 
 ## Victor Liu
 **Last Week’s Goals:**
@@ -71,4 +72,6 @@
 - Finalize the geolocator integration and ensure that the coordinates retrieved are accurate and functioning properly within the app.  
 - Continue refining the NOAA API integration to improve data accuracy and response time.  
 - Assist in implementing data storage solutions, particularly for storing weather predictions and user streaks.
+
+  
 =======
