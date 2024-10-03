@@ -55,10 +55,20 @@
 
 ## Victor Liu
 **Last Week’s Goals:**
+- Work on integrating the NOAA API.  
+- Research how to retrieve and use geolocation coordinates within React Native for the weather guessing game.
 
 ### Progress and Issues:
+
+- Integrated NOAA API and continued experimenting with data retrieval.  
+- Researched and explored various methods to incorporate geolocation coordinates using React Native, though optimizing the integration is still a work in progress.  
+- Encountering challenges with displaying the user interface on iOS and Android devices, which has delayed some testing and further development.  
+- Struggling to effectively integrate the NOAA API with the app's core features due to issues with  UI loading across platforms.
 
 
 ### Next Week’s Goals:
 
+- Finalize the geolocator integration and ensure that the coordinates retrieved are accurate and functioning properly within the app.  
+- Continue refining the NOAA API integration to improve data accuracy and response time.  
+- Assist in implementing data storage solutions, particularly for storing weather predictions and user streaks.
 =======
