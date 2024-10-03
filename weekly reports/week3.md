@@ -47,11 +47,18 @@
 
 ## Tommy Lu
 **Last Week’s Goals:** 
-
+Assist in resolving UI display issues for iOS and Android platforms.
+Collaborate on finalizing UI designs for core weather features.
+Begin initial setup for MongoDB integration for user predictions and streak tracking.
 ### Next Week’s Goals:
-
+Contributed to ongoing discussions and troubleshooting sessions for UI display issues.
+Provided input and feedback on UI designs, focusing on usability and consistency.
+Started initial setup steps for MongoDB integration, but progress is at an early stage due to technical setup challenges.
 ### Progress and Issues:
-
+Continue assisting in resolving UI display issues, particularly focusing on Android simulation.
+Work closely with the team to finalize UI designs and integrate them into the app.
+Progress further with MongoDB setup and begin testing data storage functionalities.
+Collaborate with Victor on integrating geolocation features into the weather guessing game prototype.
 ---
 
 ## Victor Liu
