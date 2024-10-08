@@ -6,16 +6,20 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
+// Define color constants
+const DEEP_BLUE = '#003366';
+const WHITE = '#FFFFFF';
+const ACCENT_ORANGE = '#FF9933';
+
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: DEEP_BLUE, dark: DEEP_BLUE }}
       headerImage={
         <Ionicons size={310} name="partly-sunny" style={styles.headerImage} />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Nimbus</ThemedText>
-        <HelloWave />
+        <ThemedText type="title" style={styles.titleText}>Nimbus</ThemedText>
       </ThemedView>
 
       <ThemedText style={styles.weatherText}>
@@ -24,22 +28,22 @@ export default function HomeScreen() {
 
       <ThemedView style={styles.weatherInfo}>
         <ThemedText type="title" style={styles.temperature}>72°F</ThemedText>
-        <ThemedText type="subtitle">New York City</ThemedText>
-        <ThemedText>Partly Cloudy</ThemedText>
+        <ThemedText type="subtitle" style={styles.locationText}>New York City</ThemedText>
+        <ThemedText style={styles.conditionText}>Partly Cloudy</ThemedText>
       </ThemedView>
 
       <ThemedView style={styles.details}>
         <ThemedView style={styles.detailItem}>
-          <Ionicons name="thermometer-outline" size={24} />
-          <ThemedText>Feels like: 75°F</ThemedText>
+          <Ionicons name="thermometer-outline" size={24} color={ACCENT_ORANGE} />
+          <ThemedText style={styles.detailText}>Feels like: 75°F</ThemedText>
         </ThemedView>
         <ThemedView style={styles.detailItem}>
-          <Ionicons name="water-outline" size={24} />
-          <ThemedText>Humidity: 65%</ThemedText>
+          <Ionicons name="water-outline" size={24} color={ACCENT_ORANGE} />
+          <ThemedText style={styles.detailText}>Humidity: 65%</ThemedText>
         </ThemedView>
       </ThemedView>
 
-      <ThemedText>
+      <ThemedText style={styles.forecastText}>
         This section could contain a brief forecast for the coming days.
       </ThemedText>
     </ParallaxScrollView>
@@ -48,7 +52,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#FFFFFF',
+    color: WHITE,
     bottom: -90,
     left: -35,
     position: 'absolute',
@@ -59,16 +63,30 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 10,
   },
+  titleText: {
+    color: WHITE,
+  },
   weatherText: {
-    marginBottom: 20, // Increased for more spacing
+    marginBottom: 20,
+    color: WHITE,
   },
   weatherInfo: {
     alignItems: 'center',
-    marginBottom: 20, // Increased for more spacing
+    marginBottom: 20,
+    marginTop: 20,
+    paddingTop: 10,
   },
   temperature: {
     fontSize: 48,
     fontWeight: 'bold',
+    lineHeight: 56,
+    color: ACCENT_ORANGE,
+  },
+  locationText: {
+    color: WHITE,
+  },
+  conditionText: {
+    color: WHITE,
   },
   details: {
     flexDirection: 'column',
@@ -79,5 +97,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
+  },
+  detailText: {
+    color: WHITE,
+  },
+  forecastText: {
+    color: WHITE,
   },
 });
