@@ -39,5 +39,5 @@ Nimbus allows users to:
 ## Running the App through Expo
 1. Clone the repository
 2. Install dependencies: `npm install`
-3. Start the development server: `npm expo start`
+3. Start the development server: `npx expo start`
 4. Use the Expo Go app to scan the QR code and run the app on your mobile device.
