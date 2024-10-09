@@ -1,23 +1,16 @@
 # Team Report
 
 ## Last Week’s Goals:
-- Prioritize resolving UI display issues for both iOS and Android platforms.
-- Complete the integration of finalized UI designs into the app.
-- Continue refining the NOAA API integration, focusing on data accuracy and efficient retrieval.
-- Implement a prototype of the data storage solution for user predictions and streak tracking.
-- Develop a working prototype of the weather guessing game feature.
-- Conduct thorough testing of the app's functionality across different devices and simulators.
-  
+- Work on displaying app on ios, android, and/or web.
+- Test features
 ## Progress and Issues:
-- Continued work on resolving UI display issues for iOS and Android devices.
-- Made progress on finalizing UI designs for core weather features.
-- Explored options for data storage, including MongoDB for user predictions and streak tracking.
-- Ongoing challenges with displaying the application UI on iOS devices.
-- Android simulation still requires further development and troubleshooting.
+- App displays on ios, android, and web
+- Added and updated game, streak, and home pages
+- Calendar added to streak page to keep track of streaks
 
 ## Next Week’s Goals:
-
-
+- Work on search functionality on main page.
+- Help team start on game page and logic.
 
 ---
 
@@ -25,17 +18,18 @@
 
 ## Om Patel
 **Last Week’s Goals:**
-- Fixing errors when running code.
-- Have the app display on an iOS/Android device.
+- Continue working on getting app to display on android
+- Test features once app is able to be displayed
 
 ### Progress and Issues:
-- Installed and setup android studio to simulate app on android device.
-- Created an api key from OpenCage in order to convert coordinates to locations and vice versa.
-- Still working on getting app to display, need more time to setup android folder.
+- App is now able to be displayed on ios, android, and web.
+- Added game and streak pages.
+- Updated main page with a search bar, still working on returning weather data when searching.
+- Streak page has a calendar which will show game progress.
 
 ### Next Week’s Goals:
-- Continue working on getting app to display on android.
-- Test features once app is able to be displayed
+- Work on search functionality on main page.
+- Help team start on game page and logic.
 ---
 
 ## Tommy Lu
