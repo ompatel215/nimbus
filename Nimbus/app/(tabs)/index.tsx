@@ -6,7 +6,8 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { fetchWeatherData } from '@/app/api'; // Import your API function
-import Explore from '@/app/(tabs)/explore'; // Change back to import the original explore screen
+// Removed Explore import
+// import Explore from '@/app/(tabs)/explore'; // Change back to import the original explore screen
 
 // Define color constants
 const DEEP_BLUE = '#003366';
