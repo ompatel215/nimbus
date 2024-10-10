@@ -17,11 +17,19 @@ const ACCENT_ORANGE = '#FF9933';
 export default function HomeScreen() {
   const [location, setLocation] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleSearch = async () => {
     if (location) {
+      // Call fetchWeatherData with the city name directly
       const data = await fetchWeatherData(location);
-      setWeatherData(data);
+      if (data.error) {
+        setError(data.error);
+        setWeatherData(null);
+      } else {
+        setWeatherData(data);
+        setError(null);
+      }
     }
   };
 
@@ -38,39 +46,30 @@ export default function HomeScreen() {
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
-          placeholder="Enter location"
-          placeholderTextColor="#FFFFFF" // Set placeholder text color to white
+          placeholder="Enter city name" // Ensure this indicates city name
+          placeholderTextColor="#FFFFFF"
           value={location}
           onChangeText={setLocation}
         />
         <Button title="Search" onPress={handleSearch} />
       </View>
 
+      {error && (
+        <ThemedView style={styles.errorContainer}>
+          <ThemedText style={styles.errorText}>{error}</ThemedText>
+        </ThemedView>
+      )}
+
       {weatherData && (
         <ThemedView style={styles.weatherInfo}>
-          <ThemedText type="title" style={styles.temperature}>{`${weatherData.temperature}°F`}</ThemedText>
-          <ThemedText type="subtitle" style={styles.locationText}>{location}</ThemedText>
-          <ThemedText type="subtitle" style={styles.conditionText}>{weatherData.condition}</ThemedText>
+          <ThemedText type="title" style={styles.temperature}>{`${weatherData.temperature}°${weatherData.temperatureUnit}`}</ThemedText>
+          <ThemedText type="subtitle" style={styles.conditionText}>{weatherData.shortForecast}</ThemedText>
+          <ThemedText style={styles.detailedForecast}>{weatherData.detailedForecast}</ThemedText>
         </ThemedView>
       )}
 
       <ThemedText style={styles.weatherText}>
         Check out the current weather conditions.
-      </ThemedText>
-
-      <ThemedView style={styles.details}>
-        <ThemedView style={styles.detailItem}>
-          <Ionicons name="thermometer-outline" size={24} color={ACCENT_ORANGE} />
-          <ThemedText style={styles.detailText}>Feels like: 75°F</ThemedText>
-        </ThemedView>
-        <ThemedView style={styles.detailItem}>
-          <Ionicons name="water-outline" size={24} color={ACCENT_ORANGE} />
-          <ThemedText style={styles.detailText}>Humidity: 65%</ThemedText>
-        </ThemedView>
-      </ThemedView>
-
-      <ThemedText style={styles.forecastText}>
-        This section could contain a brief forecast for the coming days.
       </ThemedText>
     </ParallaxScrollView>
   );
@@ -104,11 +103,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginRight: 10,
-    color: '#FFFFFF', // Set text color to white
+    color: '#FFFFFF',
   },
-  weatherText: {
+  errorContainer: {
     marginBottom: 20,
-    color: WHITE,
+  },
+  errorText: {
+    color: 'red',
   },
   weatherInfo: {
     alignItems: 'center',
@@ -122,26 +123,14 @@ const styles = StyleSheet.create({
     lineHeight: 56,
     color: ACCENT_ORANGE,
   },
-  locationText: {
-    color: WHITE,
-  },
   conditionText: {
     color: WHITE,
   },
-  details: {
-    flexDirection: 'column',
-    gap: 10,
-    marginBottom: 20,
-  },
-  detailItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  detailText: {
+  detailedForecast: {
     color: WHITE,
   },
-  forecastText: {
+  weatherText: {
+    marginBottom: 20,
     color: WHITE,
   },
 });
