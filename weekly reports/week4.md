@@ -45,13 +45,21 @@
 ---
 
 ## Victor Liu
-**Last Week’s Goals:**
-- Finalize the geolocator integration and ensure that the coordinates retrieved are accurate and functioning properly within the app.  
-- Continue refining the NOAA API integration to improve data accuracy and response time.  
+
+### Last Week’s Goals:
+- Finalize the geolocator integration and ensure that the coordinates retrieved are accurate and functioning properly within the app.
+- Continue refining the NOAA API integration to improve data accuracy and response time.
 - Assist in implementing data storage solutions, particularly for storing weather predictions and user streaks.
+
 ### Progress and Issues:
--
+  - Successfully implemented the NOAA API in the API.js file to retrieve weather data, including wind, temperature, and a detailed forecast for a given location based on longitude and latitude.
+  - Fetched weather data successfully for a hardcoded location (e.g., New York).
+  - Made attempts to integrate React Native's geolocation services to dynamically retrieve the user's location.
+  - Encountered difficulties with React Native's geolocation services—UI does not display the permission request for location access, and the application fails to fetch the correct forecast based on the user's real-time location, instead, it retrieves data from the hardcoded location (New York).
+
 ### Next Week’s Goals:
--
-  
+- Resolve the issue with React Native geolocation services so that the app properly asks for location permission and fetches accurate weather data based on the user’s actual location.
+- Continue refining the NOAA API integration, especially focusing on making it dynamically responsive to different locations.
+- Start integrating data storage for weather predictions and user streaks within the app.
+
 =======
