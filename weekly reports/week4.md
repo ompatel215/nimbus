@@ -44,7 +44,7 @@
 
 
 ### Progress and Issues:
--Continue assisting in resolving UI display issues, particularly focusing on Android simulation. 
+- Continue assisting in resolving UI display issues, particularly focusing on Android simulation. 
 Work closely with the team to finalize UI designs and integrate them into the app. Progress further with MongoDB setup
 
 ---
