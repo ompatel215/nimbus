@@ -39,9 +39,14 @@
 - Started initial setup steps for MongoDB integration, but progress is at an early stage due to technical setup challenges.
   
 ### Next Week’s Goals:
-- 
+- Working on mongodb connection error Advance the initial setup steps for MongoDB integration
+- Actively participate in finalizing UI designs and begin integrating them into the app.
+
+
 ### Progress and Issues:
--
+-Continue assisting in resolving UI display issues, particularly focusing on Android simulation. 
+Work closely with the team to finalize UI designs and integrate them into the app. Progress further with MongoDB setup
+
 ---
 
 ## Victor Liu
