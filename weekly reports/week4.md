@@ -7,10 +7,11 @@
 - App displays on ios, android, and web
 - Added and updated game, streak, and home pages
 - Calendar added to streak page to keep track of streaks
-
+- Implemented NOAA API to api.js
 ## Next Week’s Goals:
 - Work on search functionality on main page.
 - Help team start on game page and logic.
+- Work on react native geolocation
 
 ---
 
