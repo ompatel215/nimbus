@@ -1,6 +1,6 @@
 # Course Project: Requirements & Team Policies
 
-**CMPSC 487**  
+**CMPSC 487W**  
 **Om Patel, Victor Liu, Tommy Lu**  
 **September 1, 2023**
 
