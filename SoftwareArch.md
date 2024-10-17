@@ -51,9 +51,19 @@ We store data using MongoDB, with collections for [Users, Streaks, etc.]. The sc
 - **Guideline**: [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - **Reason for Choice**: The Airbnb JavaScript Style Guide is one of the most popular and comprehensive style guides for JavaScript, covering best practices and coding conventions that enhance code quality and readability. Given that React Native is built on JavaScript, this guideline will help us maintain consistent coding standards across our React Native application.
 
+### TypeScript
+- **Guideline**: [Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html)
+- **Reason for Choice**: 
+  1. Provides comprehensive coverage for TypeScript, complementing our JavaScript guidelines.
+  2. Promotes type safety and TypeScript-specific best practices, helping to catch errors early and improve overall code quality.
+  3. Widely adopted in the industry, making it easier for team members to adapt and for potential new contributors to understand our codebase.
+  4. Regularly updated to keep pace with TypeScript language evolution and community standards.
+
 ### Enforcement Plan
 To ensure adherence to these guidelines, we will implement the following measures:
 - **Pre-commit Hooks**: We will set up pre-commit hooks in our development environment to automatically check code against the specified style guides before allowing commits. This helps catch deviations early and maintains code quality.
+- **IDE Integration**: Encourage team members to use IDEs with built-in support for JavaScript and TypeScript, such as Visual Studio Code, with appropriate extensions.
+
 
 # 4. Process Description
 
@@ -62,6 +72,14 @@ To ensure adherence to these guidelines, we will implement the following measure
   - Likelihood: Medium
   - Impact: High
   - Mitigation: Early API definition and integration tests.
+- **Data Accuracy and Reliability**:
+  - Likelihood: Medium
+  - Impact: High
+  - Mitigation: Implement data validation, cross-check with multiple sources if possible, and provide clear disclaimers to users.
+- **Geocoding Inaccuracies**:
+  - Likelihood: Low
+  - Impact: Medium
+  - Mitigation: Implement error handling for location inputs, and provide manual location selection options.
 - **Scaling issues with MongoDB**:
   - Likelihood: Low
   - Impact: Medium
@@ -77,7 +95,7 @@ To ensure adherence to these guidelines, we will implement the following measure
 - **Unexpected API changes (third-party services)**:
   - Likelihood: Low
   - Impact: High
-  - Mitigation: Version lock APIs, add mocks for testing.
+  - Mitigation: Version lock APIs, and add mocks for testing.
 
 ## 4.2 Project Schedule
 | Milestone               | Task                                      | Effort (person-weeks) | Dependencies                             |
