@@ -1,4 +1,4 @@
-# 1. Team Info & Policies (10%)
+# 1. Team Info & Policies
 ### Team Members
 - **Om Patel:** Product Owner: Frontend
 - **Victor Liu:** Development Team: Backend
@@ -15,7 +15,7 @@
   
 ---
 
-# 2. Product Description (20%)
+# 2. Product Description
 ### Major Features:
 - Allow user to enter current location to get weather
 - Allow user to guess the temperature of selected location
@@ -28,7 +28,7 @@
 
 ---
 
-# 3. Use Cases (Functional Requirements) (30%)
+# 3. Use Cases (Functional Requirements) 
 
 ### Use Case 1: User submits a temperature guess
 1) **Actors:** User, NOAA API
@@ -78,7 +78,7 @@
 
 ---
 
-# 4. Non-functional Requirements (10%)
+# 4. Non-functional Requirements
 
 ### Scalability
 - The system should be able to handle a 50% increase in the number of users within the first year without any performance degradation. This includes both vertical scalability and horizontal scalability.
@@ -89,7 +89,7 @@
 ### Security and Privacy
 - The system must comply with relevant data protection laws such as GDPR or CCPA, ensuring that all user data is encrypted both in transit and at rest. Access to sensitive information should be restricted to authorized personnel only, with multi-factor authentication enforced for administrative accounts.
 
-# 5. External Requirements (10%)
+# 5. External Requirements 
 
 ### API Services
 
@@ -104,7 +104,7 @@
 
 - **React Native:** For cross-platform mobile app development.
 
-# 6. Team Process Description (20%)
+# 6. Team Process Description 
 
 ### Schedule:
 1. **Milestone 1 (Week 3):** Basic app structure with NOAA API integration.
