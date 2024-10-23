@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput, Button, ActivityIndicator } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -18,10 +18,14 @@ export default function HomeScreen() {
   const [location, setLocation] = useState('');
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async () => {
     if (location) {
+      setIsLoading(true);
+      setError(null);
       const data = await fetchWeatherData(location);
+      setIsLoading(false);
       if (data.error) {
         setError(data.error);
         setWeatherData(null);
@@ -45,13 +49,15 @@ export default function HomeScreen() {
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
-          placeholder="Enter city name" // Ensure this indicates city name
+          placeholder="Enter city name"
           placeholderTextColor="#FFFFFF"
           value={location}
           onChangeText={setLocation}
         />
         <Button title="Search" onPress={handleSearch} />
       </View>
+
+      {isLoading && <ActivityIndicator size="large" color={ACCENT_ORANGE} />}
 
       {error && (
         <ThemedView style={styles.errorContainer}>
@@ -61,6 +67,9 @@ export default function HomeScreen() {
 
       {weatherData && (
         <ThemedView style={styles.weatherInfo}>
+          <ThemedText type="title" style={styles.cityName}>
+            {`${weatherData.cityName}, ${weatherData.country}`}
+          </ThemedText>
           <ThemedText type="title" style={styles.temperature}>
             {`${weatherData.temperature}°${weatherData.temperatureUnit}`}
           </ThemedText>
@@ -72,6 +81,9 @@ export default function HomeScreen() {
           </ThemedText>
           <ThemedText style={styles.windInfo}>
             {`Wind: ${weatherData.windSpeed}, Direction: ${weatherData.windDirection}°`}
+          </ThemedText>
+          <ThemedText style={styles.additionalInfo}>
+            {`Humidity: ${weatherData.humidity}%, Pressure: ${weatherData.pressure} hPa`}
           </ThemedText>
         </ThemedView>
       )}
@@ -135,5 +147,15 @@ const styles = StyleSheet.create({
   },
   windInfo: {
     color: WHITE,
+  },
+  cityName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: WHITE,
+    marginBottom: 10,
+  },
+  additionalInfo: {
+    color: WHITE,
+    marginTop: 10,
   },
 });
