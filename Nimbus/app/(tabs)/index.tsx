@@ -21,7 +21,6 @@ export default function HomeScreen() {
 
   const handleSearch = async () => {
     if (location) {
-      // Call fetchWeatherData with the city name directly
       const data = await fetchWeatherData(location);
       if (data.error) {
         setError(data.error);
@@ -62,15 +61,20 @@ export default function HomeScreen() {
 
       {weatherData && (
         <ThemedView style={styles.weatherInfo}>
-          <ThemedText type="title" style={styles.temperature}>{`${weatherData.temperature}°${weatherData.temperatureUnit}`}</ThemedText>
-          <ThemedText type="subtitle" style={styles.conditionText}>{weatherData.shortForecast}</ThemedText>
-          <ThemedText style={styles.detailedForecast}>{weatherData.detailedForecast}</ThemedText>
+          <ThemedText type="title" style={styles.temperature}>
+            {`${weatherData.temperature}°${weatherData.temperatureUnit}`}
+          </ThemedText>
+          <ThemedText type="subtitle" style={styles.conditionText}>
+            {weatherData.shortForecast}
+          </ThemedText>
+          <ThemedText style={styles.detailedForecast}>
+            {weatherData.detailedForecast}
+          </ThemedText>
+          <ThemedText style={styles.windInfo}>
+            {`Wind: ${weatherData.windSpeed}, Direction: ${weatherData.windDirection}°`}
+          </ThemedText>
         </ThemedView>
       )}
-
-      <ThemedText style={styles.weatherText}>
-        Check out the current weather conditions.
-      </ThemedText>
     </ParallaxScrollView>
   );
 }
@@ -129,8 +133,7 @@ const styles = StyleSheet.create({
   detailedForecast: {
     color: WHITE,
   },
-  weatherText: {
-    marginBottom: 20,
+  windInfo: {
     color: WHITE,
   },
 });
