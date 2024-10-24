@@ -14,12 +14,18 @@
 
 ## Om Patel
 ###Last Week’s Goals:
-
+- Work on search functionality on main page.
+- Help team start on game page and logic.
 
 ### Progress and Issues:
-
+- Implemented basic weather guessing game.
+- Added different levels of difficulty for the game.
+- Added a counter to keep track of correct and incorrect guesses.
 
 ### Next Week’s Goals:
+- Add features to game such as making the easy level multiple choice
+- Give users the option to ask for hints
+- Update streaks page to work with guesses
 
 
 ## Tommy Lu
