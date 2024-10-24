@@ -13,7 +13,7 @@
 # Individual Contributions
 
 ## Om Patel
-###Last Week’s Goals:
+***Last Week’s Goals:**
 - Work on search functionality on main page.
 - Help team start on game page and logic.
 
@@ -46,6 +46,8 @@ Progress further with MongoDB setup
 
 
 ## Victor Liu
+**Last Week’s Goals:** 
+- 
 
 
 ### Progress and Issues:
@@ -54,5 +56,10 @@ Progress further with MongoDB setup
 
 ### Next Week’s Goals:
 
-  
+  ### Next Week’s Goals:
+- Improve the user interface for better weather data presentation, making it more user-friendly and visually appealing.
+- Optimize the OpenWeatherMap API integration to reduce the number of API calls and efficiently handle the free plan limitations.
+- Begin working on the user login interface and explore options for user authentication.
+- Start saving and displaying user-specific weather predictions and streak data, tying it to the login system.
+
 =======
