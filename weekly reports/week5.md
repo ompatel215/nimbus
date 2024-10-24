@@ -36,13 +36,19 @@
 
 ## Tommy Lu
 ### Last Week’s Goals:
-- Working on mongodb connection error Advance the initial setup steps for MongoDB integration
-- Actively participate in finalizing UI designs and begin integrating them into the app.
+Work on SQLite database connection error.
+Advance the initial setup steps for SQLite integration.
+Actively participate in finalizing UI designs and begin integrating them into the app.
   
 ### Progress and Issues:
-
+Resolved SQLite connection issue and successfully set up the initial integration with the app.
+Worked on the basic structure for user data storage in SQLite.
+Collaborated with the design team to finalize the UI components for the weather and streak tracking pages.
+Encountered challenges in optimizing SQL queries for faster data retrieval.
 ### Next Week’s Goals:
-
+Complete SQLite integration for user-specific data storage, including weather predictions and streak tracking.
+Assist with optimizing SQL queries to ensure efficient data handling.
+Continue integrating finalized UI designs into the app, ensuring compatibility with dark and light modes.
 
 
 ## Victor Liu
