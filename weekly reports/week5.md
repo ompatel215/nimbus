@@ -13,7 +13,7 @@
 # Individual Contributions
 
 ## Om Patel
-**Last Week’s Goals:**
+###Last Week’s Goals:
 
 
 ### Progress and Issues:
