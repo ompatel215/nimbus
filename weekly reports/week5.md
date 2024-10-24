@@ -13,7 +13,8 @@
 # Individual Contributions
 
 ## Om Patel
-***Last Week’s Goals:**
+
+### Last Week’s Goals:
 - Work on search functionality on main page.
 - Help team start on game page and logic.
 
@@ -29,7 +30,7 @@
 
 
 ## Tommy Lu
-**Last Week’s Goals:** 
+### Last Week’s Goals:
 Contributed to ongoing discussions and troubleshooting sessions for UI display issues.
 Provided input and feedback on UI designs, focusing on usability and consistency.
 Started initial setup steps for MongoDB integration, but progress is at an early stage due to technical setup challenges.
@@ -46,17 +47,17 @@ Progress further with MongoDB setup
 
 
 ## Victor Liu
-**Last Week’s Goals:** 
-- 
-
+### Last Week’s Goals:
+- Research other weather APIs that can fetch weather data from other countries.
+- Integrate a new weather API to complement NOAA, allowing the application to fetch weather data worldwide instead of being limited to the USA.
+- Begin exploring the design and functionality of the user login interface
 
 ### Progress and Issues:
-
-
+- Integrated the OpenWeatherMap API, which allows for fetching data from all over the world, compared to NOAA’s USA-only data.
+- Worked on UI display for better presentation of weather information.
+- OpenWeatherMap API lacks advanced data, is limited in forecast details, and is limited to 60 API calls per minute or 1,000,000 API calls per month.
 
 ### Next Week’s Goals:
-
-  ### Next Week’s Goals:
 - Improve the user interface for better weather data presentation, making it more user-friendly and visually appealing.
 - Optimize the OpenWeatherMap API integration to reduce the number of API calls and efficiently handle the free plan limitations.
 - Begin working on the user login interface and explore options for user authentication.
