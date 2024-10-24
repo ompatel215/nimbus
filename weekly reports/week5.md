@@ -36,7 +36,9 @@
 
 ## Tommy Lu
 ### Last Week’s Goals:
-
+- Working on mongodb connection error Advance the initial setup steps for MongoDB integration
+- Actively participate in finalizing UI designs and begin integrating them into the app.
+  
 ### Progress and Issues:
 
 ### Next Week’s Goals:
