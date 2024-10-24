@@ -6,6 +6,7 @@
 - Work on react native geolocation
 ## Progress and Issues:
 
+## Next Week's Goals:
 
 ---
 
