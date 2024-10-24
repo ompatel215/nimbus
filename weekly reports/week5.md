@@ -1,13 +1,11 @@
 # Team Report
 
 ## Last Week’s Goals:
-App displays on ios, android, and web
-Added and updated game, streak, and home pages
-Calendar added to streak page to keep track of streaks
+- Work on search functionality on main page.
+- Help team start on game page and logic.
+- Work on react native geolocation
 ## Progress and Issues:
-Work on search functionality on main page.
-Help team start on game page and logic.
-## Next Week’s Goals:
+
 
 ---
 
