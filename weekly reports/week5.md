@@ -5,8 +5,12 @@
 - Help team start on game page and logic.
 - Work on react native geolocation
 ## Progress and Issues:
-
+- Implemented weather guessing game
+- Switched to a different API in order to get weather data from other countries outside of the United States
+- Still need to optimize app to work in light mode
 ## Next Week's Goals:
+- Improve visual appearence of the app including fixing light mode issues
+- Get streak tab to work with game tab to keep track of streak data
 
 ---
 
