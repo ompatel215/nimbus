@@ -6,8 +6,6 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { fetchWeatherData } from '@/app/api'; // Import your API function
-// Removed Explore import
-// import Explore from '@/app/(tabs)/explore'; // Change back to import the original explore screen
 
 // Define color constants
 const DEEP_BLUE = '#003366';
@@ -68,7 +66,10 @@ export default function HomeScreen() {
       {weatherData && (
         <ThemedView style={styles.weatherInfo}>
           <ThemedText type="title" style={styles.cityName}>
-            {`${weatherData.cityName}, ${weatherData.country}`}
+            {weatherData.cityName} {/* Display city name */}
+          </ThemedText>
+          <ThemedText style={styles.locationInfo}>
+            {`${weatherData.stateName}, ${weatherData.countryName}`} {/* Display state and country */}
           </ThemedText>
           <ThemedText type="title" style={styles.temperature}>
             {`${weatherData.temperature}°${weatherData.temperatureUnit}`}
@@ -83,7 +84,7 @@ export default function HomeScreen() {
             {`Wind: ${weatherData.windSpeed}, Direction: ${weatherData.windDirection}°`}
           </ThemedText>
           <ThemedText style={styles.additionalInfo}>
-            {`Humidity: ${weatherData.humidity}%, Pressure: ${weatherData.pressure} hPa`}
+            {`Humidity: ${weatherData.humidity}%`}
           </ThemedText>
         </ThemedView>
       )}
@@ -157,5 +158,10 @@ const styles = StyleSheet.create({
   additionalInfo: {
     color: WHITE,
     marginTop: 10,
+  },
+  locationInfo: {
+    fontSize: 16, // Adjust the font size as needed
+    color: WHITE,
+    marginBottom: 10, // Add some space below the location info
   },
 });
