@@ -12,9 +12,23 @@ const DEEP_BLUE = '#003366';
 const WHITE = '#FFFFFF';
 const ACCENT_ORANGE = '#FF9933';
 
+// Define the WeatherData interface
+interface WeatherData {
+  cityName: string;
+  stateName: string;
+  countryName: string;
+  temperature: number;
+  temperatureUnit: string;
+  shortForecast: string;
+  detailedForecast: string;
+  windSpeed: string;
+  windDirection: string;
+  humidity: number;
+}
+
 export default function HomeScreen() {
   const [location, setLocation] = useState('');
-  const [weatherData, setWeatherData] = useState(null);
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
