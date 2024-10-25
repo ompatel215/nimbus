@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Button, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, TextInput, Button, ActivityIndicator, useColorScheme } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -27,6 +27,10 @@ interface WeatherData {
 }
 
 export default function HomeScreen() {
+  const colorScheme = useColorScheme(); // Get the current color scheme
+  const textColor = colorScheme === 'light' ? '#000000' : WHITE; // Set text color based on the scheme
+  const placeholderColor = colorScheme === 'light' ? '#555555' : '#FFFFFF'; // Set placeholder color based on the scheme
+
   const [location, setLocation] = useState('');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState(null);
@@ -55,14 +59,14 @@ export default function HomeScreen() {
         <Ionicons size={310} name="partly-sunny" style={styles.headerImage} />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title" style={styles.titleText}>Nimbus</ThemedText>
+        <ThemedText type="title" style={[styles.titleText, { color: textColor }]}>Nimbus</ThemedText>
       </ThemedView>
 
       <View style={styles.searchContainer}>
         <TextInput
-          style={styles.searchInput}
+          style={[styles.searchInput, { color: textColor }]} // Change text color here
           placeholder="Enter city name"
-          placeholderTextColor="#FFFFFF"
+          placeholderTextColor={placeholderColor} // Change placeholder color here
           value={location}
           onChangeText={setLocation}
         />
@@ -73,31 +77,31 @@ export default function HomeScreen() {
 
       {error && (
         <ThemedView style={styles.errorContainer}>
-          <ThemedText style={styles.errorText}>{error}</ThemedText>
+          <ThemedText style={[styles.errorText, { color: colorScheme === 'light' ? 'red' : WHITE }]}>{error}</ThemedText>
         </ThemedView>
       )}
 
       {weatherData && (
         <ThemedView style={styles.weatherInfo}>
-          <ThemedText type="title" style={styles.cityName}>
+          <ThemedText type="title" style={[styles.cityName, { color: textColor }]}>
             {weatherData.cityName} {/* Display city name */}
           </ThemedText>
-          <ThemedText style={styles.locationInfo}>
+          <ThemedText style={[styles.locationInfo, { color: textColor }]}>
             {`${weatherData.stateName}, ${weatherData.countryName}`} {/* Display state and country */}
           </ThemedText>
           <ThemedText type="title" style={styles.temperature}>
             {`${weatherData.temperature}°${weatherData.temperatureUnit}`}
           </ThemedText>
-          <ThemedText type="subtitle" style={styles.conditionText}>
+          <ThemedText type="subtitle" style={[styles.conditionText, { color: textColor }]}>
             {weatherData.shortForecast}
           </ThemedText>
-          <ThemedText style={styles.detailedForecast}>
+          <ThemedText style={[styles.detailedForecast, { color: textColor }]}>
             {weatherData.detailedForecast}
           </ThemedText>
-          <ThemedText style={styles.windInfo}>
+          <ThemedText style={[styles.windInfo, { color: textColor }]}>
             {`Wind: ${weatherData.windSpeed}, Direction: ${weatherData.windDirection}°`}
           </ThemedText>
-          <ThemedText style={styles.additionalInfo}>
+          <ThemedText style={[styles.additionalInfo, { color: textColor }]}>
             {`Humidity: ${weatherData.humidity}%`}
           </ThemedText>
         </ThemedView>
@@ -134,7 +138,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginRight: 10,
-    color: '#FFFFFF',
   },
   errorContainer: {
     marginBottom: 20,

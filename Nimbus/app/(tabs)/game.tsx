@@ -6,7 +6,7 @@ import { ThemedView } from '@/components/ThemedView';
 import { fetchWeatherData } from '@/app/api';
 
 const cities = {
-  easy: ['Los Angeles', 'New York', 'Chicago'],
+  easy: ['Los Angeles', 'New York', 'Chicago', 'Philadelphia'],
   medium: ['San Francisco', 'Miami', 'Seattle'],
   hard: ['Anchorage', 'Honolulu', 'Phoenix'],
 };
@@ -77,7 +77,7 @@ export default function GameScreen() {
             <ThemedText style={styles.title}>Guess the Temperature in {city}</ThemedText>
             <TextInput
               style={styles.input}
-              placeholder="Enter your guess"
+              placeholder="Enter your guess in degrees Farenheit"
               keyboardType="numeric"
               value={guess}
               onChangeText={setGuess}
