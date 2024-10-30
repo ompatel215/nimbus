@@ -13,7 +13,7 @@ export const fetchWeatherData = async (city) => {
     }
 
     // Log the geocode results for debugging
-    console.log(geocodeData.results); // Added logging to see the results
+    //console.log(geocodeData.results); // Added logging to see the results
 
     // Extract latitude and longitude from the geocode data
     let latitude, longitude, cityName, stateName, countryName;
