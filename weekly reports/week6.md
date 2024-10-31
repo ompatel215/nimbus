@@ -41,11 +41,15 @@
 
 ## Tommy Lu
 ### Last Week’s Goals:
-  
+Continue working on SQLite integration for storing user and streak data.
+Contribute to the UI design, ensuring a cohesive and user-friendly experience across all tabs.  
 ### Progress and Issues:
-
+•	Actively worked on integrating SQLite to allow the app to store streak data persistently.
+	•	Assisted in refining the UI for the streak and game tabs to align with overall design improvements, resolving some minor inconsistencies in layout.
 ### Next Week’s Goals:
-
+•	Complete SQLite setup to enable tracking of user data and streaks.
+	•	Collaborate with Om Patel to implement the “game of the day” feature and ensure smooth updating of streak data on the streak page.
+	•	Begin initial testing for data persistence to confirm SQLite is correctly handling the storage needs.
 
 
 ## Victor Liu
