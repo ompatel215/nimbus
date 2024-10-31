@@ -4,9 +4,14 @@
 - Improve visual appearence of the app including fixing light mode issues
 - Get streak tab to work with game tab to keep track of streak data
 ## Progress and Issues:
-
+- Added multiple choice options for the easy game mode.
+- Improved user interface, added loading indicator, fixed light mode issues.
+- Game now allows users to play until they want to exit to menu
+  
 ## Next Week's Goals:
-
+- Set up storage for keeping track of user and streak data.
+- Create a basic sign in/ sign up page to show before main app.
+- Add game of the day feature and update streak page upon completion of the game.
 
 ---
 
@@ -15,14 +20,22 @@
 ## Om Patel
 
 ### Last Week’s Goals:
+
 - Add features to game such as making the easy level multiple choice
 - Give users the option to ask for hints
 - Update streaks page to work with guesses
 
 ### Progress and Issues:
 
+- Fixed main menu and streak menu to work on light mode on all devices.
+- Updated styling on the game menu, modes are now large buttons.
+- Updated easy game mode multiple choice buttons.
+- Game no longer returns to the main screen after each guess
+- Added an exit button to return to the main game screen.
 ### Next Week’s Goals:
 
+- Add a game of the day mode.
+- Update streak page when completing the game of the day
 
 
 
