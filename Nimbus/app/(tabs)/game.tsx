@@ -49,7 +49,7 @@ export default function GameScreen() {
     setWeatherData(data);
 
     // Generate temperature options for easy mode
-    if (level === 'easy') {
+    if (level === 'easy' && data.temperature) {
       generateTemperatureOptions(data.temperature);
     }
   };
@@ -75,12 +75,12 @@ export default function GameScreen() {
     if (Math.abs(actualTemp - userGuess) <= 3) {
       setCorrectGuesses(correctGuesses + 1);
       Alert.alert('Correct!', `You guessed within 3 degrees! The actual temperature is ${actualTemp}°${weatherData.temperatureUnit}.`, [
-        { text: 'OK', onPress: () => fetchNewCity(difficulty) }
+        { text: 'OK', onPress: () => fetchNewCity(difficulty as Exclude<typeof difficulty, null>) }
       ]);
     } else {
       setIncorrectGuesses(incorrectGuesses + 1);
       Alert.alert('Incorrect', `The actual temperature is ${actualTemp}°${weatherData.temperatureUnit}.`, [
-        { text: 'OK', onPress: () => fetchNewCity(difficulty) }
+        { text: 'OK', onPress: () => difficulty && fetchNewCity(difficulty) }
       ]);
     }
     
