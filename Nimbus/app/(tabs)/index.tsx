@@ -46,7 +46,7 @@ export default function HomeScreen() {
         setError(data.error);
         setWeatherData(null);
       } else {
-        setWeatherData(data);
+        setWeatherData(data as WeatherData); 
         setError(null);
       }
     }
