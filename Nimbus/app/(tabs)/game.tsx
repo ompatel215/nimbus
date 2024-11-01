@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Button, Alert, ActivityIndicator, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { fetchWeatherData } from '@/app/api';
@@ -13,13 +13,39 @@ type WeatherData = {
 };
 
 const cities = {
-  easy: ['Los Angeles', 'New York', 'Chicago', 'Philadelphia', 'Houston', 'Dallas', 'Atlanta', 'Miami'],
-  medium: ['San Francisco', 'Miami', 'Seattle', 'Denver', 'Boston', 'Phoenix', 'Orlando'],
-  hard: ['Anchorage', 'Honolulu', 'Phoenix', 'Salt Lake City', 'Boise', 'Santa Fe', 'Little Rock'],
+  easy: [
+    { name: 'Los Angeles', state: 'CA' },
+    { name: 'New York', state: 'NY' },
+    { name: 'Chicago', state: 'IL' },
+    { name: 'Philadelphia', state: 'PA' },
+    { name: 'Houston', state: 'TX' },
+    { name: 'Dallas', state: 'TX' },
+    { name: 'Atlanta', state: 'GA' },
+    { name: 'Miami', state: 'FL' },
+  ],
+  medium: [
+    { name: 'San Francisco', state: 'CA' },
+    { name: 'Miami', state: 'FL' },
+    { name: 'Seattle', state: 'WA' },
+    { name: 'Denver', state: 'CO' },
+    { name: 'Boston', state: 'MA' },
+    { name: 'Phoenix', state: 'AZ' },
+    { name: 'Orlando', state: 'FL' },
+  ],
+  hard: [
+    { name: 'Anchorage', state: 'AK' },
+    { name: 'Honolulu', state: 'HI' },
+    { name: 'Phoenix', state: 'AZ' },
+    { name: 'Salt Lake City', state: 'UT' },
+    { name: 'Boise', state: 'ID' },
+    { name: 'Santa Fe', state: 'NM' },
+    { name: 'Little Rock', state: 'AR' },
+  ],
 };
 
 export default function GameScreen() {
   const navigation = useNavigation();
+  const { colors } = useTheme(); // Get the current theme colors
   const [difficulty, setDifficulty] = useState<keyof typeof cities | null>(null);
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
@@ -28,6 +54,7 @@ export default function GameScreen() {
   const [loading, setLoading] = useState(false); // Loading state
   const [guess, setGuess] = useState(''); // State for user input
   const [temperatureOptions, setTemperatureOptions] = useState<number[]>([]);
+  const [showHint, setShowHint] = useState(false); // State to manage hint visibility
 
   const startGame = async (level: keyof typeof cities) => {
     setDifficulty(level);
@@ -36,11 +63,12 @@ export default function GameScreen() {
 
   const fetchNewCity = async (level: keyof typeof cities) => {
     const randomCity = cities[level][Math.floor(Math.random() * cities[level].length)];
-    setCity(randomCity);
+    setCity(`${randomCity.name}, ${randomCity.state}`); // Set city with state
     setWeatherData(null);
     setLoading(true);
+    setShowHint(false); // Reset showHint when fetching a new city
 
-    const data = await fetchWeatherData(randomCity);
+    const data = await fetchWeatherData(randomCity.name); // Fetch weather data using city name
     setLoading(false);
     if (data.error) {
       Alert.alert('Error', data.error);
@@ -48,9 +76,11 @@ export default function GameScreen() {
     }
     setWeatherData(data);
 
-    // Generate temperature options for easy mode
+    // Generate temperature options based on difficulty
     if (level === 'easy' && data.temperature) {
       generateTemperatureOptions(data.temperature);
+    } else if (level === 'hard' && data.temperature) {
+      generateHardModeTemperatureOptions(data.temperature); // Call the new function for hard mode
     }
   };
 
@@ -62,6 +92,16 @@ export default function GameScreen() {
     while (options.size < 4) {
       const randomTemp = Math.floor(Math.random() * (actualTemp + 10 - (actualTemp - 10))) + (actualTemp - 10);
       options.add(randomTemp);
+    }
+
+    setTemperatureOptions(Array.from(options).sort(() => Math.random() - 0.5)); // Shuffle options
+  };
+
+  const generateHardModeTemperatureOptions = (actualTemp: number) => {
+    const options = new Set<number>();
+    // Generate close temperature options
+    for (let i = -1; i <= 2; i++) {
+      options.add(actualTemp + i); // Add actual temperature and close values
     }
 
     setTemperatureOptions(Array.from(options).sort(() => Math.random() - 0.5)); // Shuffle options
@@ -102,6 +142,16 @@ export default function GameScreen() {
     setTemperatureOptions([]);
   };
 
+  const generateHint = () => {
+    if (weatherData && weatherData.temperature) {
+      const hintRange = 5; // Define the range for the hint
+      const lowerBound = weatherData.temperature - hintRange;
+      const upperBound = weatherData.temperature + hintRange;
+      return `The temperature is between ${lowerBound}° and ${upperBound}°`;
+    }
+    return '';
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ThemedView style={styles.container}>
@@ -135,17 +185,39 @@ export default function GameScreen() {
                       </View>
                     ))}
                   </View>
-                ) : (
+                ) : difficulty === 'hard' ? (
                   <>
                     <TextInput
-                      style={styles.input}
+                      style={[styles.input, { color: colors.text }]}
                       placeholder="Enter your guess in degrees Fahrenheit"
                       keyboardType="numeric"
                       value={guess}
                       onChangeText={setGuess}
-                      placeholderTextColor="#ffffff" // Light placeholder text
+                      placeholderTextColor="#888888"
+                      selectionColor={colors.text}
                     />
                     <Button title="Submit Guess" onPress={() => checkGuess(Number(guess))} color="#007BFF" />
+                  </>
+                ) : (
+                  <>
+                    <TextInput
+                      style={[styles.input, { color: colors.text }]}
+                      placeholder="Enter your guess in degrees Fahrenheit"
+                      keyboardType="numeric"
+                      value={guess}
+                      onChangeText={setGuess}
+                      placeholderTextColor="#888888"
+                      selectionColor={colors.text}
+                    />
+                    <Button title="Submit Guess" onPress={() => checkGuess(Number(guess))} color="#007BFF" />
+                  </>
+                )}
+                {difficulty === 'medium' && (
+                  <>
+                    <Button title="Show Hint" onPress={() => setShowHint(!showHint)} color="#FFA500" />
+                    {showHint && (
+                      <ThemedText style={[styles.hintText, { color: colors.text }]}>{generateHint()}</ThemedText>
+                    )}
                   </>
                 )}
                 <Button title="Exit to Menu" onPress={exitGame} color="red" />
@@ -209,5 +281,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#007BFF', // Blue background
     borderRadius: 10, // Rounded corners
     padding: 10, // Padding for better touch area
+  },
+  hintText: {
+    fontSize: 16,
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  inputLabel: {
+    fontSize: 16,
+    marginBottom: 5,
+    color: '#ffffff',
   },
 });
