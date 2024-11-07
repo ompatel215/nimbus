@@ -257,3 +257,56 @@ We plan to deliver the following documentation:
 - **User Guide**: Instructions on how to install and use the product.
 - **API Documentation**: Details on API endpoints, request/response formats.
 - **Developer Guide**: Instructions for setting up the development environment.
+
+## 11. Test Automation and Continuous Integration (CI)
+
+### Test-Automation Infrastructure
+Our project uses **Jest** for unit testing and test automation. Jest is a popular JavaScript testing framework that is well-integrated with React Native, making it a great choice for our project's testing needs. It provides features such as snapshot testing, asynchronous testing, and mocking capabilities, which are essential for our React Native app.
+
+### Justification for Test-Automation Infrastructure
+We chose **Jest** for the following reasons:
+- **Integration with React Native:** Jest is the default testing framework for React Native, ensuring seamless integration with the app.
+- **Asynchronous Testing Support:** Jest’s support for testing asynchronous code allows us to effectively handle API calls and asynchronous operations in our app.
+- **Snapshot Testing:** Jest’s snapshot testing feature helps us ensure that the UI remains consistent across updates, a crucial aspect of frontend development.
+
+### Adding a New Test to the Code Base
+To add a new test to the code base, follow these steps:
+1. **Create a new test file** with the `.test.js` or `.spec.js` extension.
+2. Write the test using Jest's testing functions (`test()`, `expect()`, etc.).
+3. Place the test file in the `__tests__` directory or alongside the file being tested, depending on your preferred project structure.
+4. Run `npm test` to execute the tests.
+
+For example, to test a function that formats temperatures, a test might look like:
+```javascript
+test('should format temperature correctly', () => {
+  expect(formatTemperature(32)).toBe('32°F');
+});
+```
+### Justification for CI Service
+We chose **GitHub Actions** because:
+- **Native Integration with GitHub:** As our project repository is hosted on GitHub, GitHub Actions integrates seamlessly with our workflow.
+- **Flexibility and Customization:** GitHub Actions allows us to define custom workflows for testing, deployment, and other automation tasks.
+- **Free Tier for Public Repositories:** GitHub Actions offers a free tier for open-source projects, which is beneficial for our project.
+
+### Pros/Cons Matrix for CI Services
+
+| **CI Service**        | **Pros**                                                                 | **Cons**                                                               |
+|-----------------------|--------------------------------------------------------------------------|------------------------------------------------------------------------|
+| **GitHub Actions**     | - Seamless integration with GitHub<br>- Free for public repositories<br>- Custom workflows | - Limited configuration options compared to specialized tools like Jenkins |
+| **Travis CI**          | - Simple to configure<br>- Great for open-source projects               | - Limited resources in free tier<br>- Slower build times compared to GitHub Actions  |
+
+### Tests Executed in a CI Build
+The following tests will be executed in the CI build:
+- **Unit tests** for individual functions using Jest.
+- **Integration tests** to verify interactions between components.
+- **End-to-end tests** for the critical workflows of the application, such as the user login and weather retrieval.
+
+### Development Actions Triggering a CI Build
+The following actions will trigger a CI build:
+- **Pushing changes** to any branch (e.g., feature branches or the main branch).
+- **Opening a pull request** to the main branch.
+- **Merging a pull request** to the main branch.
+
+CI builds will run automatically upon these actions to ensure that new code changes do not break the existing functionality.
+
+
