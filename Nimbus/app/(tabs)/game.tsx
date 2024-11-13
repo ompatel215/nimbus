@@ -217,7 +217,7 @@ export default function GameScreen() {
               </View>
             </View>
             <View style={styles.gameOfTheDayButtonContainer}>
-              <View style={styles.roundButton}>
+              <View style={styles.wideButton}>
                 <Button title="Game of the Day" onPress={startGameOfTheDay} color="#fff" />
               </View>
             </View>
@@ -296,12 +296,23 @@ const styles = StyleSheet.create({
   roundButton: {
     borderRadius: 50,
     overflow: 'hidden',
-    backgroundColor: '#007BFF', // Change to your desired button color
+    backgroundColor: '#007BFF',
     width: 100, // Adjust width as needed
     height: 100, // Adjust height as needed
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10, // Add margin for spacing
+    marginBottom: 10,
+  },
+  wideButton: {
+    borderRadius: 25,
+    overflow: 'hidden',
+    backgroundColor: '#28a745',
+    width: 200,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 10,
   },
   input: {
     height: 40,
