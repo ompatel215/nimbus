@@ -5,14 +5,12 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { fetchWeatherData } from '@/app/api'; // Import your API function
+import { fetchWeatherData } from '@/app/api';
 
-// Define color constants
 const DEEP_BLUE = '#003366';
 const WHITE = '#FFFFFF';
 const ACCENT_ORANGE = '#FF9933';
 
-// Define the WeatherData interface
 interface WeatherData {
   cityName: string;
   stateName: string;
@@ -27,9 +25,9 @@ interface WeatherData {
 }
 
 export default function HomeScreen() {
-  const colorScheme = useColorScheme(); // Get the current color scheme
-  const textColor = colorScheme === 'light' ? '#000000' : WHITE; // Set text color based on the scheme
-  const placeholderColor = colorScheme === 'light' ? '#555555' : '#FFFFFF'; // Set placeholder color based on the scheme
+  const colorScheme = useColorScheme();
+  const textColor = colorScheme === 'light' ? '#000000' : WHITE;
+  const placeholderColor = colorScheme === 'light' ? '#555555' : '#FFFFFF';
 
   const [location, setLocation] = useState('');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
@@ -52,11 +50,32 @@ export default function HomeScreen() {
     }
   };
 
+  const getWeatherIcon = (condition: string) => {
+    switch (condition.toLowerCase()) {
+      case 'clear':
+        return 'sunny';
+      case 'clouds':
+        return 'cloudy';
+      case 'rain':
+        return 'rainy';
+      case 'snow':
+        return 'snow';
+      case 'thunderstorm':
+        return 'thunderstorm';
+      default:
+        return 'partly-sunny';
+    }
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: DEEP_BLUE, dark: DEEP_BLUE }}
       headerImage={
-        <Ionicons size={310} name="partly-sunny" style={styles.headerImage} />
+        <Ionicons
+          size={310}
+          name={getWeatherIcon(weatherData?.shortForecast || '')}
+          style={styles.headerImage}
+        />
       }>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title" style={[styles.titleText, { color: textColor }]}>Nimbus</ThemedText>
@@ -64,9 +83,9 @@ export default function HomeScreen() {
 
       <View style={styles.searchContainer}>
         <TextInput
-          style={[styles.searchInput, { color: textColor }]} // Change text color here
+          style={[styles.searchInput, { color: textColor }]}
           placeholder="Enter city name"
-          placeholderTextColor={placeholderColor} // Change placeholder color here
+          placeholderTextColor={placeholderColor}
           value={location}
           onChangeText={setLocation}
         />
@@ -84,10 +103,10 @@ export default function HomeScreen() {
       {weatherData && (
         <ThemedView style={styles.weatherInfo}>
           <ThemedText type="title" style={[styles.cityName, { color: textColor }]}>
-            {weatherData.cityName} {/* Display city name */}
+            {weatherData.cityName}
           </ThemedText>
           <ThemedText style={[styles.locationInfo, { color: textColor }]}>
-            {`${weatherData.stateName}, ${weatherData.countryName}`} {/* Display state and country */}
+            {`${weatherData.stateName}, ${weatherData.countryName}`}
           </ThemedText>
           <ThemedText type="title" style={styles.temperature}>
             {`${weatherData.temperature}°${weatherData.temperatureUnit}`}
@@ -177,8 +196,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   locationInfo: {
-    fontSize: 16, // Adjust the font size as needed
+    fontSize: 16,
     color: WHITE,
-    marginBottom: 10, // Add some space below the location info
+    marginBottom: 10,
   },
 });
