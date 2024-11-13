@@ -113,10 +113,32 @@ export default function GameScreen() {
     const actualTemp = weatherData.temperature;
 
     if (Math.abs(actualTemp - userGuess) <= 3) {
-      setCorrectGuesses(correctGuesses + 1);
-      Alert.alert('Correct!', `You guessed within 3 degrees! The actual temperature is ${actualTemp}°${weatherData.temperatureUnit}.`, [
-        { text: 'OK', onPress: () => fetchNewCity(difficulty as Exclude<typeof difficulty, null>) }
-      ]);
+      const newCorrectGuesses = correctGuesses + 1;
+      setCorrectGuesses(newCorrectGuesses);
+
+      Alert.alert(
+        'Correct!',
+        `You guessed within 3 degrees! The actual temperature is ${actualTemp}°${weatherData.temperatureUnit}.`,
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              if (difficulty === 'medium' && newCorrectGuesses === 5) {
+                Alert.alert(
+                  'Congratulations!',
+                  'You have guessed 5 temperatures correctly in the Game of the Day!',
+                  [
+                    { text: 'Back to Menu', onPress: exitGame },
+                    { text: 'Continue', onPress: () => fetchNewCity(difficulty as Exclude<typeof difficulty, null>) }
+                  ]
+                );
+              } else {
+                fetchNewCity(difficulty as Exclude<typeof difficulty, null>);
+              }
+            }
+          }
+        ]
+      );
     } else {
       setIncorrectGuesses(incorrectGuesses + 1);
       Alert.alert('Incorrect', `The actual temperature is ${actualTemp}°${weatherData.temperatureUnit}.`, [
@@ -152,10 +174,35 @@ export default function GameScreen() {
     return '';
   };
 
+  const startGameOfTheDay = async () => {
+    const allCities = [...cities.easy, ...cities.medium, ...cities.hard];
+    const randomCity = allCities[Math.floor(Math.random() * allCities.length)];
+    setCity(`${randomCity.name}, ${randomCity.state}`);
+    setWeatherData(null);
+    setLoading(true);
+    setShowHint(false);
+
+    const data = await fetchWeatherData(randomCity.name);
+    setLoading(false);
+    if (data.error) {
+      Alert.alert('Error', data.error);
+      return;
+    }
+    setWeatherData(data);
+
+    // Generate temperature options for the game of the day
+    if (data.temperature) {
+      generateTemperatureOptions(data.temperature);
+    }
+
+    // Set difficulty to 'medium' for Game of the Day
+    setDifficulty('medium');
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ThemedView style={styles.container}>
-        {!difficulty ? (
+        {difficulty === null ? (
           <>
             <ThemedText style={styles.title}>Choose Difficulty</ThemedText>
             <View style={styles.buttonContainer}>
@@ -167,6 +214,11 @@ export default function GameScreen() {
               </View>
               <View style={styles.roundButton}>
                 <Button title="Hard" onPress={() => startGame('hard')} color="#fff" />
+              </View>
+            </View>
+            <View style={styles.gameOfTheDayButtonContainer}>
+              <View style={styles.roundButton}>
+                <Button title="Game of the Day" onPress={startGameOfTheDay} color="#fff" />
               </View>
             </View>
           </>
@@ -185,19 +237,6 @@ export default function GameScreen() {
                       </View>
                     ))}
                   </View>
-                ) : difficulty === 'hard' ? (
-                  <>
-                    <TextInput
-                      style={[styles.input, { color: colors.text }]}
-                      placeholder="Enter your guess in degrees Fahrenheit"
-                      keyboardType="numeric"
-                      value={guess}
-                      onChangeText={setGuess}
-                      placeholderTextColor="#888888"
-                      selectionColor={colors.text}
-                    />
-                    <Button title="Submit Guess" onPress={() => checkGuess(Number(guess))} color="#007BFF" />
-                  </>
                 ) : (
                   <>
                     <TextInput
@@ -250,6 +289,10 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 20,
   },
+  gameOfTheDayButtonContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
   roundButton: {
     borderRadius: 50,
     overflow: 'hidden',
@@ -258,6 +301,7 @@ const styles = StyleSheet.create({
     height: 100, // Adjust height as needed
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 10, // Add margin for spacing
   },
   input: {
     height: 40,
