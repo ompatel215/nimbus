@@ -5,7 +5,7 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { fetchWeatherData } from '@/app/api';
+import { fetchWeatherData } from '@/services/api';
 
 const DEEP_BLUE = '#003366';
 const WHITE = '#FFFFFF';
@@ -31,7 +31,7 @@ export default function HomeScreen() {
 
   const [location, setLocation] = useState('');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async () => {
@@ -128,7 +128,6 @@ export default function HomeScreen() {
     </ParallaxScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   headerImage: {
     color: WHITE,
@@ -201,3 +200,4 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Button, Alert, ActivityIndicator, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { useNavigation, useTheme } from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { fetchWeatherData } from '@/app/api';
+import { fetchWeatherData } from '@/services/api';
+import { useRouter } from 'expo-router';
 
 // Define a type for the weather data
 type WeatherData = {
@@ -44,8 +45,8 @@ const cities = {
 };
 
 export default function GameScreen() {
-  const navigation = useNavigation();
-  const { colors } = useTheme(); // Get the current theme colors
+  const router = useRouter();
+  const { colors } = useTheme();
   const [difficulty, setDifficulty] = useState<keyof typeof cities | null>(null);
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);

@@ -1,4 +1,4 @@
-export const fetchWeatherData = async (city) => {
+export const fetchWeatherData = async (city: string) => {
   try {
     // Step 1: Get the coordinates for the given city using OpenCage API
     const geocodeResponse = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=70342383ac34488eb2c824cf22f24a60`);
@@ -61,8 +61,8 @@ export const fetchWeatherData = async (city) => {
     const weatherData = await weatherResponse.json();
 
     // Step 3: Extract and return relevant weather information
-    const mainCondition = weatherData.weather[0].main; // Main weather condition
-    const detailedConditions = weatherData.weather.map(condition => condition.description).join(', '); // Detailed descriptions
+    const mainCondition = weatherData.weather[0].main;
+    const detailedConditions = weatherData.weather.map((condition: { description: string }) => condition.description).join(', ');
 
     return {
       temperature: Math.round(weatherData.main.temp),
@@ -77,6 +77,6 @@ export const fetchWeatherData = async (city) => {
       countryName: countryName // Include country name
     };
   } catch (error) {
-    return { error: error.message };
+    return { error: error instanceof Error ? error.message : 'An unknown error occurred' };
   }
 };
