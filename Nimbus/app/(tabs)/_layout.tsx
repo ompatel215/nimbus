@@ -12,32 +12,45 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarInactiveTintColor: colorScheme === 'dark' ? '#ffffff' : '#000000',
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: colorScheme === 'dark' ? '#000000' : '#ffffff',
+        },
       }}>
       <Tabs.Screen
-        name="index" // Home screen
+        name="index"
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'partly-sunny' : 'partly-sunny-outline'} color={color} />
+            <TabBarIcon 
+              name={focused ? 'partly-sunny' : 'partly-sunny-outline'} 
+              color={color} 
+            />
           ),
         }}
       />
       <Tabs.Screen
-        name="game" // Game screen
+        name="game"
         options={{
           title: 'Game',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'game-controller' : 'game-controller-outline'} color={color} />
+            <TabBarIcon 
+              name={focused ? 'game-controller' : 'game-controller-outline'} 
+              color={color} 
+            />
           ),
         }}
       />
       <Tabs.Screen
-        name="streaks" // Streaks screen
+        name="streaks"
         options={{
           title: 'Streaks',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'star' : 'star-outline'} color={color} />
+            <TabBarIcon 
+              name={focused ? 'star' : 'star-outline'} 
+              color={color} 
+            />
           ),
         }}
       />
