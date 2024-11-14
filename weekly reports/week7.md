@@ -37,10 +37,14 @@
 
 ## Tommy Lu
 ### Last Week’s Goals:
+Assist with developing the sign-in/sign-up interface.
 
 ### Progress and Issues:
-
+Began working on the database integration for user streak tracking, though full implementation is still in progress.
+Assisted with fixing display issues caused by the Expo Go update.
 ### Next Week’s Goals:
+Provide support for refining the sign-in/sign-up process.
+Assist with any additional database connections needed for user data handling.
 
 
 ## Victor Liu
