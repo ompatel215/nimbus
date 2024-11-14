@@ -37,8 +37,14 @@
 ## Victor Liu
 
 ### Last Week’s Goals:
+- Set up a storage system for tracking user streaks and progress.
+- Design and create a foundational sign-in/sign-up interface.
 
 ### Progress and Issues:
+- Updated the program and removed unnecessary files following an Expo Go update, making adjustments to accommodate the new update.
+- Fixed display issues as a result of the update.
+- Created basic login interface, but will need to connect with database for user login
 
 ### Next Week’s Goals:
-=======
+- Finalize and test the user streak tracking storage system.
+- Continue developing the sign-in/sign-up interface
