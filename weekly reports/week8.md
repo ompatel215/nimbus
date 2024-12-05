@@ -38,7 +38,9 @@ Provide support for refining the sign-in/sign-up process.
 Assist with any additional database connections needed for user data handling.
 
 ### Progress and Issues:
-
+working on mongodb data base 
+having trouble connect mongodb
+issuse with the data base
 ### Next Week’s Goals:
 
 
