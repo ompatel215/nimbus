@@ -48,11 +48,15 @@ issuse with the data base
 ## Victor Liu
 
 ### Last Week’s Goals:
-- Finalize and test the user streak tracking storage system.
-- Continue developing the sign-in/sign-up interface
+- Finalize and test the user streak tracking storage system.  
+- Continue developing the sign-in/sign-up interface.  
 
 ### Progress and Issues:
-
+- Assisted with integrating the database into the application but encountered issues where the app would crash upon running.  
+- Looked into alternative solutions, like using AsyncStorage from React Native to handle database features.  
+- Progress on the sign-in/sign-up interface was limited due to debugging database integration issues.  
 
 ### Next Week’s Goals:
-
+- Resolve application crash issues related to the database integration.  
+- Implement  solution using AsyncStorage for login verification and registration if the database remains unstable.  
+- Support the team in finalizing the streak tracking system and user interface improvements.  
