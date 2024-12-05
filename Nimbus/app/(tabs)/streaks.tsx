@@ -5,7 +5,6 @@ import { ThemedView } from '@/components/ThemedView';
 import { Calendar } from 'react-native-calendars'; // Ensure this package is installed
 import { useColorScheme } from 'react-native'; // Import useColorScheme
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect } from '@react-navigation/native';
 
 const STREAK_KEY = 'userStreak';
 
@@ -13,37 +12,31 @@ export default function StreaksScreen() {
   const colorScheme = useColorScheme(); // Get the current color scheme
   const [streak, setStreak] = useState({ lastPlayedDate: '', currentStreak: 0 });
 
-  const loadStreak = async () => {
-    try {
-      const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
-      console.log('Stored streak:', storedStreak);
-      
-      if (storedStreak) {
-        const streakData = JSON.parse(storedStreak);
-        console.log('Parsed streak data:', streakData);
-        setStreak(streakData);
-      } else {
-        const initialStreak = { lastPlayedDate: '', currentStreak: 0 };
-        await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(initialStreak));
-        setStreak(initialStreak);
-      }
-    } catch (error) {
-      console.error('Error loading streak:', error);
-      setStreak({ lastPlayedDate: '', currentStreak: 0 });
-    }
-  };
-
-  // Load streak on initial mount
   useEffect(() => {
+    const loadStreak = async () => {
+      try {
+        // Clear the streak data (temporary debug measure)
+        await AsyncStorage.removeItem(STREAK_KEY);
+        
+        const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
+        console.log('Stored streak:', storedStreak); // Debug log
+        
+        if (storedStreak) {
+          const streakData = JSON.parse(storedStreak);
+          console.log('Parsed streak data:', streakData); // Debug log
+          setStreak(streakData);
+        } else {
+          const initialStreak = { lastPlayedDate: '', currentStreak: 0 };
+          await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(initialStreak));
+          setStreak(initialStreak);
+        }
+      } catch (error) {
+        console.error('Error loading streak:', error);
+        setStreak({ lastPlayedDate: '', currentStreak: 0 });
+      }
+    };
     loadStreak();
   }, []);
-
-  // Refresh streak data when screen comes into focus
-  useFocusEffect(
-    React.useCallback(() => {
-      loadStreak();
-    }, [])
-  );
 
   // Generate calendar data based on actual streak
   const streaksData = streak.lastPlayedDate ? {
