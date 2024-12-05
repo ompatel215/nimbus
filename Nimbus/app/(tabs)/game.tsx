@@ -149,20 +149,22 @@ export default function GameScreen() {
       setCorrectGuesses(newCorrectGuesses);
 
       if (difficulty === 'medium') {
-        await updateStreak(true);  // Only update streak for game of the day
-        
         if (newCorrectGuesses === 5) {
-          // Update the completion count for the Game of the Day
-          const completionCount = await AsyncStorage.getItem('gameOfTheDayCompletionCount');
-          const newCompletionCount = completionCount ? parseInt(completionCount) : 1;
-          await AsyncStorage.setItem('gameOfTheDayCompletionCount', newCompletionCount.toString());
+          // Update streak
+          const today = new Date().toISOString().split('T')[0];
+          const newStreakCount = streak.lastPlayedDate === today ? streak.currentStreak + 1 : 1;
+          const newStreakData = { lastPlayedDate: today, currentStreak: newStreakCount };
+          
+          // Save to AsyncStorage and update state
+          await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(newStreakData));
+          setStreak(newStreakData);
 
           Alert.alert(
-            'Congratulations!',
-            'You have guessed 5 temperatures correctly in the Game of the Day!',
+            'Congratulations! 🎉',
+            `Game of the Day completed!\nStreak: ${newStreakCount} days`,
             [
               { text: 'Back to Menu', onPress: exitGame },
-              { text: 'Continue', onPress: () => fetchNewCity(difficulty as Exclude<typeof difficulty, null>) }
+              { text: 'Continue Playing', onPress: () => fetchNewCity(difficulty as Exclude<typeof difficulty, null>) }
             ]
           );
         }
@@ -274,6 +276,13 @@ export default function GameScreen() {
           </>
         ) : (
           <>
+            {difficulty === 'medium' && (
+              <View style={styles.streakHeader}>
+                <ThemedText style={styles.streakText}>
+                  Current Streak: {streak.currentStreak} 🔥
+                </ThemedText>
+              </View>
+            )}
             <ThemedText style={styles.title}>Guess the Temperature in {city}</ThemedText>
             {loading ? (
               <ActivityIndicator size="large" color="#0000ff" />
@@ -332,6 +341,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -396,5 +406,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 5,
     color: '#ffffff',
+  },
+  streakContainer: {
+    position: 'absolute',
+    top: 50,
+    right: 20,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  streakText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  streakHeader: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+    right: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: 'rgba(74, 144, 226, 0.1)',
+    borderRadius: 10,
+    alignItems: 'center',
   },
 });
