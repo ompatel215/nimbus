@@ -7,25 +7,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen() {
   const router = useRouter();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
-    if (!username || !password) {
-      alert('Please enter both username and password');
+    if (!name) {
+      alert('Please enter your name');
       return;
     }
 
     setIsLoading(true);
-    
+
     try {
-      // Simulate network delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Store a dummy token
-      await AsyncStorage.setItem('userToken', 'dummy-token');
-      
+      // Store the name
+      await AsyncStorage.setItem('userName', name);
+
       // Navigate to main app
       router.replace('/(tabs)');
     } catch (error) {
@@ -43,32 +39,18 @@ export default function LoginScreen() {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Username"
-          value={username}
-          onChangeText={setUsername}
-          autoCapitalize="none"
+          placeholder="Enter your name"
+          value={name}
+          onChangeText={setName}
+          autoCapitalize="words"
           placeholderTextColor="#888"
         />
         
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          placeholderTextColor="#888"
-        />
-
         {isLoading ? (
           <ActivityIndicator size="large" color="#007AFF" />
         ) : (
           <View style={styles.buttonContainer}>
-            <Button title="Login" onPress={handleLogin} />
-            <View style={styles.spacer} />
-            <Button 
-              title="Create Account" 
-              onPress={() => alert('Account creation coming soon!')} 
-            />
+            <Button title="Continue" onPress={handleLogin} />
           </View>
         )}
       </View>
@@ -108,8 +90,5 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 16,
-  },
-  spacer: {
-    height: 16,
   },
 });

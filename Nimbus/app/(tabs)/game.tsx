@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Button, Alert, ActivityIndicator, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { fetchWeatherData } from '@/services/api';
 import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Define a type for the weather data
 type WeatherData = {
@@ -44,6 +45,9 @@ const cities = {
   ],
 };
 
+// Add this near the top of the file, with other constants
+const STREAK_KEY = 'userStreak';
+
 export default function GameScreen() {
   const router = useRouter();
   const { colors } = useTheme();
@@ -56,6 +60,10 @@ export default function GameScreen() {
   const [guess, setGuess] = useState(''); // State for user input
   const [temperatureOptions, setTemperatureOptions] = useState<number[]>([]);
   const [showHint, setShowHint] = useState(false); // State to manage hint visibility
+  const [streak, setStreak] = useState<{ lastPlayedDate: string; currentStreak: number }>({ 
+    lastPlayedDate: '', 
+    currentStreak: 0 
+  });
 
   const startGame = async (level: keyof typeof cities) => {
     setDifficulty(level);
@@ -108,6 +116,29 @@ export default function GameScreen() {
     setTemperatureOptions(Array.from(options).sort(() => Math.random() - 0.5)); // Shuffle options
   };
 
+  const updateStreak = async (correctGuess: boolean) => {
+    // Only update streak for game of the day mode
+    if (difficulty !== 'medium') return;
+    
+    const today = new Date().toISOString().split('T')[0];
+    console.log('Updating streak. Current streak:', streak); // Debug log
+
+    if (correctGuess) {
+      try {
+        const newStreak = streak.lastPlayedDate === today ? streak.currentStreak + 1 : 1;
+        const newStreakData = { lastPlayedDate: today, currentStreak: newStreak };
+        console.log('New streak data:', newStreakData); // Debug log
+        
+        // Save first to ensure data is persisted
+        await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(newStreakData));
+        // Then update state
+        setStreak(newStreakData);
+      } catch (error) {
+        console.error('Error updating streak:', error);
+      }
+    }
+  };
+
   const checkGuess = async (userGuess: number) => {
     if (!weatherData || !weatherData.temperature) return;
 
@@ -117,29 +148,26 @@ export default function GameScreen() {
       const newCorrectGuesses = correctGuesses + 1;
       setCorrectGuesses(newCorrectGuesses);
 
-      Alert.alert(
-        'Correct!',
-        `You guessed within 3 degrees! The actual temperature is ${actualTemp}°${weatherData.temperatureUnit}.`,
-        [
-          {
-            text: 'OK',
-            onPress: () => {
-              if (difficulty === 'medium' && newCorrectGuesses === 5) {
-                Alert.alert(
-                  'Congratulations!',
-                  'You have guessed 5 temperatures correctly in the Game of the Day!',
-                  [
-                    { text: 'Back to Menu', onPress: exitGame },
-                    { text: 'Continue', onPress: () => fetchNewCity(difficulty as Exclude<typeof difficulty, null>) }
-                  ]
-                );
-              } else {
-                fetchNewCity(difficulty as Exclude<typeof difficulty, null>);
-              }
-            }
-          }
-        ]
-      );
+      if (difficulty === 'medium') {
+        await updateStreak(true);  // Only update streak for game of the day
+        
+        if (newCorrectGuesses === 5) {
+          // Update the completion count for the Game of the Day
+          const completionCount = await AsyncStorage.getItem('gameOfTheDayCompletionCount');
+          const newCompletionCount = completionCount ? parseInt(completionCount) : 1;
+          await AsyncStorage.setItem('gameOfTheDayCompletionCount', newCompletionCount.toString());
+
+          Alert.alert(
+            'Congratulations!',
+            'You have guessed 5 temperatures correctly in the Game of the Day!',
+            [
+              { text: 'Back to Menu', onPress: exitGame },
+              { text: 'Continue', onPress: () => fetchNewCity(difficulty as Exclude<typeof difficulty, null>) }
+            ]
+          );
+        }
+      }
+      fetchNewCity(difficulty as Exclude<typeof difficulty, null>);
     } else {
       setIncorrectGuesses(incorrectGuesses + 1);
       Alert.alert('Incorrect', `The actual temperature is ${actualTemp}°${weatherData.temperatureUnit}.`, [
@@ -164,7 +192,7 @@ export default function GameScreen() {
     setIncorrectGuesses(0);
     setTemperatureOptions([]);
   };
-
+  
   const generateHint = () => {
     if (weatherData && weatherData.temperature) {
       const hintRange = 5; // Define the range for the hint
@@ -199,6 +227,27 @@ export default function GameScreen() {
     // Set difficulty to 'medium' for Game of the Day
     setDifficulty('medium');
   };
+
+  useEffect(() => {
+    const loadStreak = async () => {
+      try {
+        const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
+        
+        if (storedStreak) {
+          const streakData = JSON.parse(storedStreak);
+          setStreak(streakData);
+        } else {
+          const initialStreak = { lastPlayedDate: '', currentStreak: 0 };
+          await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(initialStreak));
+          setStreak(initialStreak);
+        }
+      } catch (error) {
+        console.error('Error loading streak:', error);
+        setStreak({ lastPlayedDate: '', currentStreak: 0 });
+      }
+    };
+    loadStreak();
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

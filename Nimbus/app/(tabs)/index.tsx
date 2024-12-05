@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, TextInput, Button, ActivityIndicator, useColorScheme } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { HelloWave } from '@/components/HelloWave';
@@ -6,6 +6,7 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { fetchWeatherData } from '@/services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DEEP_BLUE = '#003366';
 const WHITE = '#FFFFFF';
@@ -33,6 +34,18 @@ export default function HomeScreen() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      const storedName = await AsyncStorage.getItem('userName');
+      if (storedName) {
+        setUserName(storedName);
+      }
+    };
+
+    fetchUserName();
+  }, []);
 
   const handleSearch = async () => {
     if (location) {
@@ -77,6 +90,12 @@ export default function HomeScreen() {
           style={styles.headerImage}
         />
       }>
+      <ThemedView style={styles.welcomeContainer}>
+        <ThemedText style={[styles.welcomeText, { color: textColor }]}>
+          Welcome, {userName}!
+        </ThemedText>
+      </ThemedView>
+
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title" style={[styles.titleText, { color: textColor }]}>Nimbus</ThemedText>
       </ThemedView>
@@ -128,6 +147,7 @@ export default function HomeScreen() {
     </ParallaxScrollView>
   );
 }
+
 const styles = StyleSheet.create({
   headerImage: {
     color: WHITE,
@@ -143,6 +163,14 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: WHITE,
+  },
+  welcomeContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  welcomeText: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   searchContainer: {
     flexDirection: 'row',
@@ -200,4 +228,3 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
-

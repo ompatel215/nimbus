@@ -5,6 +5,7 @@ import { ThemedView } from '@/components/ThemedView';
 import { Calendar } from 'react-native-calendars'; // Ensure this package is installed
 import { useColorScheme } from 'react-native'; // Import useColorScheme
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 const STREAK_KEY = 'userStreak';
 
@@ -12,45 +13,45 @@ export default function StreaksScreen() {
   const colorScheme = useColorScheme(); // Get the current color scheme
   const [streak, setStreak] = useState({ lastPlayedDate: '', currentStreak: 0 });
 
-  useEffect(() => {
-    const loadStreak = async () => {
+  const loadStreak = async () => {
+    try {
       const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
+      console.log('Stored streak:', storedStreak);
+      
       if (storedStreak) {
-        setStreak(JSON.parse(storedStreak));
+        const streakData = JSON.parse(storedStreak);
+        console.log('Parsed streak data:', streakData);
+        setStreak(streakData);
+      } else {
+        const initialStreak = { lastPlayedDate: '', currentStreak: 0 };
+        await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(initialStreak));
+        setStreak(initialStreak);
       }
-    };
+    } catch (error) {
+      console.error('Error loading streak:', error);
+      setStreak({ lastPlayedDate: '', currentStreak: 0 });
+    }
+  };
+
+  // Load streak on initial mount
+  useEffect(() => {
     loadStreak();
   }, []);
 
-  const updateStreak = async (correctGuess: boolean) => {
-    const today = new Date().toISOString().split('T')[0];
+  // Refresh streak data when screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      loadStreak();
+    }, [])
+  );
 
-    if (correctGuess) {
-      if (streak.lastPlayedDate === today) {
-        // User has already played today, increment the streak
-        setStreak((prev) => ({ ...prev, currentStreak: prev.currentStreak + 1 }));
-      } else {
-        // User has not played today, update the last played date
-        setStreak({ lastPlayedDate: today, currentStreak: 1 });
-      }
-    } else {
-      // Reset streak logic can be added here if needed
-    }
+  // Generate calendar data based on actual streak
+  const streaksData = streak.lastPlayedDate ? {
+    [streak.lastPlayedDate]: { marked: true, dotColor: 'green' }
+  } : {};
 
-    // Save the updated streak to AsyncStorage
-    await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(streak));
-  };
-
-  // Sample data for streaks
-  const streaksData = {
-    '2023-10-01': { marked: true, dotColor: 'green' }, // Completed streak
-    '2023-10-02': { marked: true, dotColor: 'red' },   // Missed streak
-    '2023-10-03': { marked: true, dotColor: 'green' }, // Completed streak
-    '2023-10-04': { marked: true, dotColor: 'red' },   // Missed streak
-    '2023-10-05': { marked: true, dotColor: 'green' }, // Completed streak
-  };
-
-  const streakCount = streak.currentStreak; // Use the current streak from state
+  console.log('Current streak state:', streak); // Debug log
+  const streakCount = streak.currentStreak || 0;
 
   return (
     <ThemedView style={[styles.container, { backgroundColor: colorScheme === 'light' ? '#fff' : '#151718' }]}>
