@@ -1,76 +1,87 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native'; // Import Text from react-native
-import { ThemedText } from '@/components/ThemedText';
+import { View, StyleSheet, Button } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
-import { Calendar } from 'react-native-calendars'; // Ensure this package is installed
-import { useColorScheme } from 'react-native'; // Import useColorScheme
+import { ThemedText } from '@/components/ThemedText';
+import { Calendar } from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTheme } from '@react-navigation/native';
 
 const STREAK_KEY = 'userStreak';
 
 export default function StreaksScreen() {
-  const colorScheme = useColorScheme(); // Get the current color scheme
   const [streak, setStreak] = useState({ lastPlayedDate: '', currentStreak: 0 });
+  const [markedDates, setMarkedDates] = useState({});
+  const userId = 'exampleUserId';
+  const { colors } = useTheme();
+
+  const refreshStreak = async () => {
+    try {
+      const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
+      if (storedStreak) {
+        const streakData = JSON.parse(storedStreak);
+        setStreak(streakData);
+        
+        // Mark the calendar dates
+        if (streakData.lastPlayedDate) {
+          const dates = {};
+          let currentDate = new Date(streakData.lastPlayedDate);
+          
+          // Mark the last streakData.currentStreak days
+          for (let i = 0; i < streakData.currentStreak; i++) {
+            const dateString = currentDate.toISOString().split('T')[0];
+            dates[dateString] = {
+              selected: true,
+              selectedColor: '#4CAF50',
+              marked: true,
+              dotColor: '#FFD700'
+            };
+            currentDate.setDate(currentDate.getDate() - 1);
+          }
+          setMarkedDates(dates);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading streak:', error);
+    }
+  };
+
+  const handleResetStreak = async () => {
+    try {
+      await AsyncStorage.setItem(STREAK_KEY, JSON.stringify({ lastPlayedDate: '', currentStreak: 0 }));
+      setMarkedDates({});
+      await refreshStreak();
+    } catch (error) {
+      console.error('Error resetting streak:', error);
+    }
+  };
 
   useEffect(() => {
-    const loadStreak = async () => {
-      try {
-        // Clear the streak data (temporary debug measure)
-        await AsyncStorage.removeItem(STREAK_KEY);
-        
-        const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
-        console.log('Stored streak:', storedStreak); // Debug log
-        
-        if (storedStreak) {
-          const streakData = JSON.parse(storedStreak);
-          console.log('Parsed streak data:', streakData); // Debug log
-          setStreak(streakData);
-        } else {
-          const initialStreak = { lastPlayedDate: '', currentStreak: 0 };
-          await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(initialStreak));
-          setStreak(initialStreak);
-        }
-      } catch (error) {
-        console.error('Error loading streak:', error);
-        setStreak({ lastPlayedDate: '', currentStreak: 0 });
-      }
-    };
-    loadStreak();
+    refreshStreak();
+    const interval = setInterval(refreshStreak, 1000);
+    return () => clearInterval(interval);
   }, []);
 
-  // Generate calendar data based on actual streak
-  const streaksData = streak.lastPlayedDate ? {
-    [streak.lastPlayedDate]: { marked: true, dotColor: 'green' }
-  } : {};
-
-  console.log('Current streak state:', streak); // Debug log
-  const streakCount = streak.currentStreak || 0;
-
   return (
-    <ThemedView style={[styles.container, { backgroundColor: colorScheme === 'light' ? '#fff' : '#151718' }]}>
+    <ThemedView style={styles.container}>
       <ThemedText style={styles.title}>Streaks</ThemedText>
-      <ThemedText style={styles.counter}>
-        Streak Count: {streakCount} <Text role="img" aria-label="fire">🔥</Text>
-      </ThemedText>
-      <View style={styles.calendarContainer}>
-        <Calendar
-          markedDates={streaksData}
-          theme={{
-            backgroundColor: colorScheme === 'light' ? '#fff' : '#151718', // Set background color based on the scheme
-            calendarBackground: colorScheme === 'light' ? '#fff' : '#2C2F33', // Set calendar background based on the scheme
-            todayTextColor: 'orange',
-            arrowColor: 'orange',
-            monthTextColor: colorScheme === 'light' ? '#000' : '#fff', // Month text color
-            textDayFontWeight: 'bold',
-            textDayFontSize: 16,
-            textMonthFontSize: 20,
-            textDayHeaderFontSize: 16,
-            dayTextColor: colorScheme === 'light' ? '#000' : '#fff', // Day text color
-            textSectionTitleColor: colorScheme === 'light' ? '#000' : '#fff', // Title color
-            selectedDayBackgroundColor: 'orange',
-            selectedDayTextColor: '#fff',
-          }}
-        />
+      <ThemedText style={styles.streakText}>Current Streak: {streak.currentStreak} days</ThemedText>
+      <Calendar
+        style={styles.calendar}
+        theme={{
+          calendarBackground: colors.background,
+          textSectionTitleColor: colors.text,
+          dayTextColor: colors.text,
+          todayTextColor: '#00adf5',
+          selectedDayTextColor: '#ffffff',
+          monthTextColor: colors.text,
+          textDisabledColor: '#d9e1e8',
+          arrowColor: colors.text,
+        }}
+        markedDates={markedDates}
+        markingType={'period'}
+      />
+      <View style={styles.buttonContainer}>
+        <Button title="Reset Streak" onPress={handleResetStreak} color="red" />
       </View>
     </ThemedView>
   );
@@ -79,19 +90,30 @@ export default function StreaksScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: 20,
+    paddingTop: 100,
   },
   title: {
-    fontSize: 24,
+    marginTop: 20,
+    fontSize: 40,
     fontWeight: 'bold',
+    marginBottom: 10,
+    lineHeight: 40,
   },
-  counter: {
+  streakText: {
     fontSize: 18,
     marginBottom: 20,
   },
-  calendarContainer: {
-    width: '100%',
+  calendar: {
+    borderRadius: 10,
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    marginTop: 20,
   },
 });

@@ -152,16 +152,30 @@ export default function GameScreen() {
         if (newCorrectGuesses === 5) {
           // Update streak
           const today = new Date().toISOString().split('T')[0];
-          const newStreakCount = streak.lastPlayedDate === today ? streak.currentStreak + 1 : 1;
-          const newStreakData = { lastPlayedDate: today, currentStreak: newStreakCount };
-          
-          // Save to AsyncStorage and update state
-          await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(newStreakData));
-          setStreak(newStreakData);
+          try {
+            const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
+            const currentStreak = storedStreak ? JSON.parse(storedStreak) : { lastPlayedDate: '', currentStreak: 0 };
+            
+            // Only update if we haven't played today
+            if (currentStreak.lastPlayedDate !== today) {
+              const yesterday = new Date();
+              yesterday.setDate(yesterday.getDate() - 1);
+              const yesterdayStr = yesterday.toISOString().split('T')[0];
+              
+              const newStreakCount = currentStreak.lastPlayedDate === yesterdayStr ? 
+                currentStreak.currentStreak + 1 : 1;
+              
+              const newStreakData = { lastPlayedDate: today, currentStreak: newStreakCount };
+              await AsyncStorage.setItem(STREAK_KEY, JSON.stringify(newStreakData));
+              setStreak(newStreakData);
+            }
+          } catch (error) {
+            console.error('Error updating streak:', error);
+          }
 
           Alert.alert(
             'Congratulations! 🎉',
-            `Game of the Day completed!\nStreak: ${newStreakCount} days`,
+            'Game of the Day completed!',
             [
               { text: 'Back to Menu', onPress: exitGame },
               { text: 'Continue Playing', onPress: () => fetchNewCity(difficulty as Exclude<typeof difficulty, null>) }
@@ -176,7 +190,7 @@ export default function GameScreen() {
         { text: 'OK', onPress: () => difficulty && fetchNewCity(difficulty) }
       ]);
     }
-    
+
     // Clear the guess input field after checking the guess
     setGuess('');
   };
@@ -276,13 +290,6 @@ export default function GameScreen() {
           </>
         ) : (
           <>
-            {difficulty === 'medium' && (
-              <View style={styles.streakHeader}>
-                <ThemedText style={styles.streakText}>
-                  Current Streak: {streak.currentStreak} 🔥
-                </ThemedText>
-              </View>
-            )}
             <ThemedText style={styles.title}>Guess the Temperature in {city}</ThemedText>
             {loading ? (
               <ActivityIndicator size="large" color="#0000ff" />
