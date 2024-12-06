@@ -5,6 +5,12 @@ interface StreakData {
   currentStreak: number;
 }
 
+interface UserData {
+  userId: string;
+  userName: string;
+  currentStreak: number;
+}
+
 export const setupDatabase = (): void => {
   // Database setup logic
 };
@@ -56,5 +62,50 @@ export const resetStreak = async (userId: string): Promise<void> => {
     await AsyncStorage.setItem(`streak_${userId}`, JSON.stringify({ lastPlayedDate: '', currentStreak: 0 }));
   } catch (error) {
     console.error('Error resetting streak:', error);
+  }
+};
+
+export const setUserName = async (userId: string, name: string): Promise<void> => {
+  try {
+    await AsyncStorage.setItem(`user_${userId}`, name);
+  } catch (error) {
+    console.error('Error saving user name:', error);
+  }
+};
+
+export const getUserName = async (userId: string): Promise<string | null> => {
+  try {
+    return await AsyncStorage.getItem(`user_${userId}`);
+  } catch (error) {
+    console.error('Error getting user name:', error);
+    return null;
+  }
+};
+
+export const getUserData = async (): Promise<UserData[]> => {
+  try {
+    const allKeys = await AsyncStorage.getAllKeys();
+    const streakKeys = allKeys.filter(key => key.startsWith('streak_'));
+    const userData: UserData[] = [];
+
+    for (const key of streakKeys) {
+      const userId = key.replace('streak_', '');
+      const streakData = await AsyncStorage.getItem(key);
+      const userName = await AsyncStorage.getItem('userName') || `User ${userId}`;
+      
+      if (streakData) {
+        const { currentStreak } = JSON.parse(streakData);
+        userData.push({
+          userId,
+          userName,
+          currentStreak
+        });
+      }
+    }
+
+    return userData.sort((a, b) => b.currentStreak - a.currentStreak);
+  } catch (error) {
+    console.error('Error getting user data:', error);
+    return [];
   }
 }; 

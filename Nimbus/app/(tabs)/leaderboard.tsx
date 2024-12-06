@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 import { ThemedText } from '@/components/ThemedText';
-
-const LEADERBOARD_DATA = [
-  { id: '1', username: 'User1', streak: 10 },
-  { id: '2', username: 'User2', streak: 8 },
-  { id: '3', username: 'User3', streak: 7 },
-  { id: '4', username: 'User4', streak: 5 },
-  { id: '5', username: 'User5', streak: 4 },
-];
+import { getUserData } from '@/services/database';
 
 const LeaderboardScreen = () => {
-  const renderItem = ({ item }: { item: { username: string; streak: number } }) => (
+  const [leaderboardData, setLeaderboardData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getUserData();
+      setLeaderboardData(data);
+    };
+
+    fetchData();
+  }, []);
+
+  const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
-      <ThemedText style={styles.username}>{item.username}</ThemedText>
-      <ThemedText style={styles.streak}>{item.streak} days</ThemedText>
+      <ThemedText style={styles.username}>{item.userName}</ThemedText>
+      <ThemedText style={styles.streak}>{item.currentStreak} days</ThemedText>
     </View>
   );
 
@@ -23,9 +27,9 @@ const LeaderboardScreen = () => {
     <ThemedView style={styles.container}>
       <ThemedText style={styles.title}>Leaderboard</ThemedText>
       <FlatList
-        data={LEADERBOARD_DATA}
+        data={leaderboardData}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.userId}
       />
     </ThemedView>
   );

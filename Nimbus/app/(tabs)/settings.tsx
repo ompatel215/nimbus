@@ -32,13 +32,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    alignItems: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: 40,
     fontWeight: 'bold',
-    marginTop: 40,
+    marginTop: 60,
+    textAlign: 'center',
+    lineHeight: 40,
   },
   buttonContainer: {
     marginTop: 100,
+    width: '100%',
+    paddingHorizontal: 20,
   }
 });
