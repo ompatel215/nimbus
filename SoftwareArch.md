@@ -12,12 +12,11 @@ Our project follows a client-server architecture.
 
 ## Component Interfaces
 - **Frontend-Backend Interface**: Communicates using RESTful API endpoints. The backend provides JSON responses to the frontend.
-- **Backend-Database Interface**: The backend interacts with MongoDB through [an ORM like Mongoose], which manages CRUD operations.
-
+- **Backend-Database Interface**: The backend interacts with the SQLite database to perform CRUD (Create, Read, Update, Delete) operations, ensuring efficient data management.
+- 
 ## Data Storage
-We store data using MongoDB, with collections for [Users, Streaks, etc.]. The schema includes:
-- **Users**: Stores user information (name, email, password hash).
-- **Streaks**: Contains streak data (date, streak number).
+We store data using SQLite, with collections for [Users, Streaks, etc.]. The schema includes:
+- **Streaks**: Contains streak (userID, date, streak number).
 
 ## Architectural Assumptions
 - All requests will follow standard REST conventions.
@@ -43,8 +42,8 @@ We store data using MongoDB, with collections for [Users, Streaks, etc.]. The sc
   - **Responsibilities**: API routing, data validation, and business logic. The backend will communicate with the frontend through RESTful API endpoints.
 
 - **Database (Model)**:
-  - **Packages**: MongoDB, Mongoose
-  - **Responsibilities**: Data storage, schema validation, and query optimization. The backend uses Mongoose to interact with MongoDB, managing data schemas and queries efficiently.
+  - **Packages**: SQLite
+  - **Responsibilities**: Data storage, schema validation, and query optimization. 
 
 # 3. Coding Guidelines
 ### React Native
@@ -80,7 +79,7 @@ To ensure adherence to these guidelines, we will implement the following measure
   - Likelihood: Low
   - Impact: Medium
   - Mitigation: Implement error handling for location inputs, and provide manual location selection options.
-- **Scaling issues with MongoDB**:
+- **Scaling issues with SQLite**:
   - Likelihood: Low
   - Impact: Medium
   - Mitigation: Initial load testing and database indexing.
