@@ -32,7 +32,7 @@ Our project, **Nimbus**, is a weather-based game app that integrates the NOAA AP
 1. **Input Location & Get Weather**: Users can input their location and retrieve real-time weather information.
 2. **Temperature Guessing Game**: Users can guess the current temperature of selected locations.
 3. **Track Correct Predictions**: The app tracks how many correct temperature predictions a user has made.
-4. **NOAA API Integration**: Real-time temperature comparisons are made using the NOAA API.
+4. **OPENWEATHER API Integration**: Real-time temperature comparisons are made using the OPENWEATHER API.
 
 ### Stretch Goals:
 1. **Weather-Based Suggestions**: Provide relevant suggestions based on real-time weather conditions (e.g., clothing recommendations).
@@ -45,19 +45,19 @@ Our project, **Nimbus**, is a weather-based game app that integrates the NOAA AP
 Each team member has contributed a use case:
 
 ### Use Case 1: User submits a temperature guess
-1. **Actors:** User, NOAA API
+1. **Actors:** User, OpenWeather API
 2. **Trigger:** The user submits a location and temperature guess.
 3. **Preconditions:** The user has access to the app and inputs a valid location and temperature guess.
-4. **Postconditions (Success Scenario):** The system retrieves the actual temperature via the NOAA API and compares it with the user’s guess.
+4. **Postconditions (Success Scenario):** The system retrieves the actual temperature via the OPENWEATHER API and compares it with the user’s guess.
 5. **Steps (Success Scenario):**
    - User inputs a location and temperature guess.
-   - System retrieves the current temperature via the NOAA API.
+   - System retrieves the current temperature via the OPENWEATHER API.
    - The system compares the user’s guess with the actual temperature.
    - The system updates the user’s streak if the guess is correct.
 6. **Extensions/Variations:**
    - The user can submit guesses for different locations.
    - The system displays streaks and correct guesses on a dashboard.
-7. **Exceptions:** Failure to retrieve data from the NOAA API due to connection issues.
+7. **Exceptions:** Failure to retrieve data from the OPENWEATHER API due to connection issues.
 
 ### Use Case 2: User views streak history
 1. **Actors:** User
@@ -74,16 +74,16 @@ Each team member has contributed a use case:
 ### Use Case 3: Weather-based suggestion
 1. **Actors:** User
 2. **Trigger:** The user submits a temperature guess for a location.
-3. **Preconditions:** The user has access to the app and the NOAA API is available.
+3. **Preconditions:** The user has access to the app and the OPENWEATHER API is available.
 4. **Postconditions (Success Scenario):** The system provides a weather-based suggestion based on real-time conditions.
 5. **Steps (Success Scenario):**
    - The user inputs a location and temperature guess.
-   - The system retrieves current weather data via the NOAA API.
+   - The system retrieves current weather data via the OPENWEATHER API.
    - The system analyzes the weather conditions (e.g., temperature, humidity).
    - The system provides relevant suggestions based on the weather (e.g., wear a jacket).
 6. **Extensions/Variations:**
    - Users can receive additional suggestions or personalized recommendations.
-7. **Exceptions:** The NOAA API fails or no suggestion is available for the weather conditions.
+7. **Exceptions:** The OPENWEATHER API fails or no suggestion is available for the weather conditions.
 
 ---
 
@@ -118,7 +118,7 @@ Each team member has contributed a use case:
 ### Toolset:
 - **Frontend:** React Native for mobile app development.
 - **Backend:** Node.js for handling the server logic and MongoDB for data storage.
-- **API:** NOAA API for real-time weather data.
+- **API:** OPENWEATHER API for real-time weather data.
 - **Version Control:** GitHub for collaborative development and issue tracking.
 
 ### Roles:
@@ -127,13 +127,13 @@ Each team member has contributed a use case:
 - **Tommy Lu:** Scrum Master (Database) – Manages database design and oversees the team’s adherence to agile methodology.
 
 ### Schedule:
-1. **Milestone 1 (Week 3):** Set up app structure and integrate NOAA API.
+1. **Milestone 1 (Week 3):** Set up app structure and integrate OPENWEATHER API.
 2. **Milestone 2 (Week 6):** Complete the temperature guessing feature and backend integration.
 3. **Milestone 3 (Week 9):** Implement streak tracking and develop the user dashboard.
 4. **Milestone 4 (Week 12):** Conduct final testing, complete documentation, and deploy the app.
 
 ### Risks:
-1. **NOAA API Unavailability:** We risk downtime if the API is inaccessible.
+1. **OPENWEATHER API Unavailability:** We risk downtime if the API is inaccessible.
 2. **Team Availability:** Conflicting schedules could cause delays. We’ll mitigate this through active communication on Discord.
 3. **Database Integration Issues:** If there are issues integrating MongoDB, it could delay data handling features.
 
@@ -145,7 +145,7 @@ Each team member has contributed a use case:
 ### System Overview
 Our project follows a client-server architecture. 
 - Client Side (Frontend): The app uses React Native to create a mobile application that interacts with users. Users can input locations and retrieve weather data, guess temperatures, and view their streak history. The client side handles the user interface and user experience.
-- Server Side (Backend): The backend is developed using Node.js, which handles server logic, processes requests from the client, and communicates with the MongoDB database for data storage. It also integrates with the NOAA API to fetch real-time weather data.
+- Server Side (Backend): The backend is developed using Node.js, which handles server logic, processes requests from the client, and communicates with the MongoDB database for data storage. It also integrates with the OPENWEATHER API to fetch real-time weather data.
 
 ### Major Software Components
 - **Frontend**: Responsible for displaying data and user interactions. Built using [React].
