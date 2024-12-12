@@ -16,7 +16,7 @@
 ### Project Artifacts:
 - **GitHub Repository:** [Nimbus GitHub Repo](https://github.com/ompatel215/nimbus)
 - **Project Documentation:** [Markdown Documentation](#git@github.com:ompatel215/nimbus.git)
-- **OPENWEATHERMAP API Documentation:** [OPENWEATHERMAP API](https://www.ncdc.noaa.gov/cdo-web/webservices/v2)
+- **OPENWEATHERMAP API Documentation:** [OPENWEATHERMAP API](https://openweathermap.org/api)
 
 ### Communication Channels & Policies:
 - **Discord:** Used for team discussions, status updates, and decisions. Team members are required to check it daily.
