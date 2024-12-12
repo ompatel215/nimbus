@@ -20,7 +20,7 @@ We store data using SQLite, with collections for [Users, Streaks, etc.]. The sch
 
 ## Architectural Assumptions
 - All requests will follow standard REST conventions.
-- MongoDB will handle high traffic and scale with the application.
+- SQLite will handle high traffic and scale with the application.
 
 ## Alternative Architectural Decisions
 - **Alternative 1**: Use a SQL database instead of MongoDB.
