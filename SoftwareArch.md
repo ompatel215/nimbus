@@ -3,7 +3,7 @@
 ## System Overview
 Our project follows a client-server architecture. 
 - Client Side (Frontend): The app uses React Native to create a mobile application that interacts with users. Users can input locations and retrieve weather data, guess temperatures, and view their streak history. The client side handles the user interface and user experience.
-- Server Side (Backend): The backend is developed using Node.js, which handles server logic, processes requests from the client, and communicates with the MongoDB database for data storage. It also integrates with the NOAA API to fetch real-time weather data.
+- Server Side (Backend): The backend is developed using Node.js, which handles server logic, processes requests from the client, and communicates with the MongoDB database for data storage. It also integrates with the OPENWEATHERMAP API to fetch real-time weather data.
 
 ## Major Software Components
 - **Frontend**: Responsible for displaying data and user interactions. Built using [React].
