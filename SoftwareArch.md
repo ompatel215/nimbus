@@ -8,7 +8,7 @@ Our project follows a client-server architecture.
 ## Major Software Components
 - **Frontend**: Responsible for displaying data and user interactions. Built using [React].
 - **Backend**: Handles the application logic, routes, and API requests. Implemented using [Node.js].
-- **Database**: Stores persistent data and handles queries. We use [MongoDB] for data storage.
+- **Database**: Stores persistent data and handles queries. We use [SQLite] for data storage.
 
 ## Component Interfaces
 - **Frontend-Backend Interface**: Communicates using RESTful API endpoints. The backend provides JSON responses to the frontend.
