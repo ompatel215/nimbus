@@ -26,7 +26,7 @@
 
 ## 2. Product Description
 
-Our project, **Nimbus**, is a weather-based game app that integrates the NOAA API to provide real-time weather data. The app allows users to guess temperatures for different locations and track their correct guesses.
+Our project, **Nimbus**, is a weather-based game app that integrates the OPENWEATHERMAP API to provide real-time weather data. The app allows users to guess temperatures for different locations and track their correct guesses.
 
 ### Major Features:
 1. **Input Location & Get Weather**: Users can input their location and retrieve real-time weather information.
