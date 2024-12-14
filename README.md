@@ -1,5 +1,9 @@
 # Nimbus: Build, Test, and Run Instructions
 
+## Demo of application
+- **Google Drive Demo Video Link**: [Nimbus Demo](https://github.com/user-attachments/assets/ba7fd721-412b-4fa1-bd7c-e988a98ce22c)
+
+
 ## Building the System
 
 1. **Clone the Repository:**
